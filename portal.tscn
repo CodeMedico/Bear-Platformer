@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://ct1cjnb2cmvij"]
+
+[ext_resource type="Script" path="res://Portal.cs" id="1_t5t8h"]
+[ext_resource type="Shader" path="res://portal.gdshader" id="2_3aiur"]
+[ext_resource type="Texture2D" uid="uid://u0kj1gg3fvjr" path="res://Portal.png" id="2_s5g8h"]
+[ext_resource type="Texture2D" uid="uid://b40cgma0us3l6" path="res://Noise.png" id="3_g0uqg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6b1qs"]
+shader = ExtResource("2_3aiur")
+shader_parameter/distortion_strenght = -0.073
+shader_parameter/scroll = Vector2(0.17, 0.17)
+shader_parameter/_noise = ExtResource("3_g0uqg")
+shader_parameter/_texture = ExtResource("2_s5g8h")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2kte8"]
+radius = 22.0
+height = 70.0
+
+[sub_resource type="Animation" id="Animation_a18br"]
+resource_name = "Idle"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 0), Vector2(2, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_yrnka"]
+resource_name = "PortalAnimation"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.7), Vector2(1, 1), Vector2(1, 0.7), Vector2(1, 1), Vector2(1, 0.7), Vector2(1, 1), Vector2(1, 0.7), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p782w"]
+_data = {
+"Idle": SubResource("Animation_a18br"),
+"PortalAnimation": SubResource("Animation_yrnka")
+}
+
+[node name="Portal" type="Area2D"]
+scale = Vector2(2, 2)
+collision_layer = 64
+collision_mask = 5
+script = ExtResource("1_t5t8h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_6b1qs")
+position = Vector2(2, 0)
+skew = -0.195477
+texture = ExtResource("2_s5g8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_2kte8")
+
+[node name="PortalDelay" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p782w")
+}
+autoplay = "Idle"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="PortalDelay" to="." method="_on_portal_delay_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="OnAnimationFinished"]

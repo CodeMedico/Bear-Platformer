@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://c84mx48t87de6"]
+
+[ext_resource type="Script" path="res://GravitySphere.cs" id="1_myjsx"]
+[ext_resource type="Texture2D" uid="uid://cy2oolqbhbilu" path="res://Ring.png" id="2_1g81p"]
+
+[sub_resource type="Curve" id="Curve_pejuf"]
+max_value = 35.0
+_data = [Vector2(0, 0), 0.0, -1.1497, 0, 0, Vector2(0.508475, 10.725), -60.0291, -60.0291, 0, 0, Vector2(1, 21.9289), -2.96141e-05, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mfhgs"]
+curve = SubResource("Curve_pejuf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v6a60"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mfhgs")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2nd4l"]
+radius = 433.094
+
+[node name="GravitySphere" type="Node2D"]
+script = ExtResource("1_myjsx")
+gravityPower = 144.59
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.231373)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_v6a60")
+texture = ExtResource("2_1g81p")
+lifetime = 2.0
+trail_lifetime = 0.18
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2nd4l")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs5b7wasyynel"]
+
+[ext_resource type="Texture2D" uid="uid://djkkqfvn51lu7" path="res://Ladder.png" id="1_je5el"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cordg"]
+size = Vector2(143, 327)
+
+[node name="Ladder" type="Area2D"]
+position = Vector2(1068, 54)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+light_mask = 0
+z_index = -1
+offset_top = -337.0
+offset_right = 143.0
+texture = ExtResource("1_je5el")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(70, -153)
+shape = SubResource("RectangleShape2D_cordg")

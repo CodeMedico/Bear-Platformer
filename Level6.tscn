@@ -1,0 +1,148 @@
+[gd_scene load_steps=13 format=3 uid="uid://be5mmmbm4aun5"]
+
+[ext_resource type="PackedScene" uid="uid://l2bng6sfsbq0" path="res://PlayerBear.tscn" id="1_ll7ct"]
+[ext_resource type="TileSet" uid="uid://c35v2hh0f2ivs" path="res://Terrain40x40.tres" id="2_hg4re"]
+[ext_resource type="PackedScene" uid="uid://xro0g2ni6081" path="res://ui.tscn" id="3_xjlwf"]
+[ext_resource type="PackedScene" uid="uid://c8g8fq0gsuj11" path="res://death_transition.tscn" id="4_3818g"]
+[ext_resource type="PackedScene" uid="uid://c7ajfcltfm65p" path="res://honey.tscn" id="6_l1q1s"]
+[ext_resource type="PackedScene" uid="uid://diwav227xa73w" path="res://saw.tscn" id="7_vp252"]
+[ext_resource type="PackedScene" uid="uid://ck1arftfic7le" path="res://rotattionSaw.tscn" id="8_5644b"]
+[ext_resource type="PackedScene" uid="uid://cgx6oguyibhgo" path="res://slime.tscn" id="12_s3evv"]
+[ext_resource type="Texture2D" uid="uid://b8dn11agg7gto" path="res://TreesTransperent.png" id="13_8ufnc"]
+[ext_resource type="Texture2D" uid="uid://dyfcwcf0xnc66" path="res://SkyBox.png" id="14_82mip"]
+[ext_resource type="Texture2D" uid="uid://cajdrub7joyyq" path="res://BackGround.png" id="15_fxiqd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xx287"]
+size = Vector2(20587, 194)
+
+[node name="Level6" type="Node2D"]
+
+[node name="PlayerBear" parent="." instance=ExtResource("1_ll7ct")]
+position = Vector2(2206, 1047)
+
+[node name="MainCamera" type="Camera2D" parent="PlayerBear"]
+unique_name_in_owner = true
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+limit_right = 2300
+limit_bottom = 1300
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(-18, -39)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_hg4re")
+format = 2
+layer_0/tile_data = PackedInt32Array(917504, 393216, 0, 917505, 524288, 0, 917506, 65536, 0, 917507, 131072, 0, 917508, 65536, 0, 917509, 327680, 0, 917510, 196608, 0, 917511, 65536, 0, 917512, 65536, 0, 917513, 196608, 0, 917514, 393216, 0, 917515, 393216, 0, 917516, 393216, 0, 917517, 327680, 0, 917518, 196608, 0, 917519, 327680, 0, 917520, 131072, 0, 917521, 196608, 0, 917522, 524288, 0, 917523, 327680, 0, 917524, 327680, 0, 917525, 327680, 0, 917526, 262144, 0, 917527, 327680, 0, 917528, 196608, 0, 917529, 262144, 0, 917530, 327680, 0, 917531, 65536, 0, 917532, 458752, 0, 917533, 524288, 0, 983040, 524288, 6, 983041, 65536, 1, 983042, 131072, 1, 983043, 393216, 1, 983044, 524288, 6, 983045, 524288, 2, 983046, 327680, 1, 983047, 262144, 1, 983048, 65536, 3, 983049, 65536, 2, 983050, 524288, 7, 983051, 393216, 1, 983052, 65536, 6, 983053, 65536, 1, 983054, 458752, 1, 983055, 65536, 3, 983056, 196608, 1, 983057, 65536, 4, 983058, 524288, 3, 983059, 65536, 1, 983060, 65536, 6, 983061, 262144, 1, 983062, 65536, 1, 983063, 196608, 1, 983064, 524288, 4, 983065, 393216, 1, 983066, 524288, 7, 983067, 131072, 1, 983068, 524288, 7, 983069, 65536, 6, 1048576, 196608, 1, 1048577, 65536, 1, 1048578, 524288, 2, 1048579, 524288, 7, 1048580, 65536, 3, 1048581, 262144, 1, 1048582, 524288, 3, 1048583, 524288, 6, 1048584, 131072, 1, 1048585, 262144, 1, 1048586, 393216, 1, 1048587, 524288, 7, 1048588, 524288, 3, 1048589, 524288, 7, 1048590, 524288, 7, 1048591, 458752, 1, 1048592, 524288, 4, 1048593, 65536, 7, 1048594, 524288, 6, 1048595, 65536, 7, 1048596, 65536, 7, 1048597, 524288, 3, 1048598, 458752, 1, 1048599, 458752, 1, 1048600, 65536, 6, 1048601, 65536, 6, 1048602, 327680, 1, 1048603, 524288, 5, 1048604, 524288, 1, 1048605, 524288, 4, 720904, 720896, 0, 655368, 720896, 1, 589832, 720896, 1, 524296, 786432, 65537, 458760, 720896, 1, 393224, 720896, 1, 327688, 720896, 1, 262152, 786432, 65537, 196616, 720896, 1, 131080, 720896, 1, 65544, 786432, 65537, 8, 720896, 1, -65528, 720896, 1, -131064, 720896, 1, -196600, 720896, 0, 589833, 720896, 1, 589834, 720896, 0, 589835, 720896, 0, 589836, 786432, 1, 589837, 720896, 1, 589838, 720896, 0, 589839, 720896, 0, 589840, 720896, 1, 589841, 720896, 1, 589842, 786432, 0, 589843, 720896, 1, 589844, 720896, 1, 589845, 720896, 1, 589846, 786432, 1, 589847, 720896, 1, 589848, 720896, 0, 589849, 720896, 1, 655378, 720896, 1, 589850, 720896, 1, 589851, 786432, 1, 589852, 720896, 1, 589853, 720896, 1, 524306, 1, 131072, 458770, 1, 131072, 393234, 1, 131072, 327698, 1, 131072, 262162, 1, 131072, 196626, 1, 131072, 851973, 1, 131072, 786437, 1, 131072, 720901, 1, 131072, 655365, 1, 131072, 458757, 1, 131072, 393221, 1, 131072, 327685, 1, 131072, 262149, 1, 131072, 5, 1, 131072, -65531, 1, 131072, -131067, 1, 131072, -196603, 1, 131072, 131090, 1, 65536, 65554, 1, 65536, 18, 1, 65536, -65518, 1, 65536, -131054, 1, 65536, -196590, 1, 65536)
+
+[node name="UI" parent="." node_paths=PackedStringArray("characterBody2D") instance=ExtResource("3_xjlwf")]
+characterBody2D = NodePath("../PlayerBear")
+
+[node name="DeathTransition" parent="." instance=ExtResource("4_3818g")]
+
+[node name="Pit" type="Area2D" parent="."]
+position = Vector2(1543.06, -397.913)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pit"]
+position = Vector2(343, 1914)
+shape = SubResource("RectangleShape2D_xx287")
+
+[node name="Honeys" type="Node2D" parent="."]
+
+[node name="Honey" parent="Honeys" instance=ExtResource("6_l1q1s")]
+position = Vector2(287, 1053)
+
+[node name="Honey2" parent="Honeys" instance=ExtResource("6_l1q1s")]
+position = Vector2(396, 729)
+
+[node name="Honey3" parent="Honeys" instance=ExtResource("6_l1q1s")]
+position = Vector2(403, 197)
+
+[node name="Honey4" parent="Honeys" instance=ExtResource("6_l1q1s")]
+position = Vector2(306, -115)
+
+[node name="Honey5" parent="Honeys" instance=ExtResource("6_l1q1s")]
+position = Vector2(2237, 601)
+
+[node name="Honey6" parent="Honeys" instance=ExtResource("6_l1q1s")]
+position = Vector2(745, 606)
+
+[node name="Saw" parent="." instance=ExtResource("7_vp252")]
+z_index = -1
+position = Vector2(658.726, 903.902)
+scale = Vector2(2, 2)
+
+[node name="Saw2" parent="." instance=ExtResource("7_vp252")]
+z_index = -1
+position = Vector2(763, 789)
+scale = Vector2(2, 2)
+
+[node name="Saw3" parent="." instance=ExtResource("7_vp252")]
+z_index = -1
+position = Vector2(922, 785)
+scale = Vector2(2, 2)
+
+[node name="Saw4" parent="." instance=ExtResource("7_vp252")]
+z_index = -1
+position = Vector2(1086, 785)
+scale = Vector2(2, 2)
+
+[node name="Saw5" parent="." instance=ExtResource("7_vp252")]
+z_index = -1
+position = Vector2(1252, 783)
+scale = Vector2(2, 2)
+
+[node name="Saw6" parent="." instance=ExtResource("7_vp252")]
+z_index = -1
+position = Vector2(660, -231)
+scale = Vector2(2, 2)
+
+[node name="RotationSaw" parent="." instance=ExtResource("8_5644b")]
+position = Vector2(1466, 378)
+
+[node name="Slime" parent="." instance=ExtResource("12_s3evv")]
+position = Vector2(1009, 594)
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = -90
+offset = Vector2(0, 70)
+scale = Vector2(0.635, 0.635)
+transform = Transform2D(0.635, 0, 0, 0.635, 0, 70)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(829.921, 738.583)
+motion_scale = Vector2(0.5, 0.15)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
+texture_repeat = 2
+position = Vector2(8724.41, -200)
+scale = Vector2(3.04862, 3.05483)
+texture = ExtResource("13_8ufnc")
+region_enabled = true
+region_rect = Rect2(0.669342, 193.476, 6500.89, 886.871)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -35
+position = Vector2(2343.31, -366.929)
+scale = Vector2(2.4045, 1.48751)
+texture = ExtResource("14_82mip")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -55
+position = Vector2(2631.46, 1000)
+scale = Vector2(3.08353, 3.08353)
+texture = ExtResource("15_fxiqd")
+region_enabled = true
+region_rect = Rect2(-0.129837, 324.643, 1936.57, 429.118)
+
+[connection signal="tree_exited" from="TileMap/UnstableBlock" to="TileMap/UnstableBlock" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@20131" to="TileMap/@StaticBody2D@20131" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@20132" to="TileMap/@StaticBody2D@20132" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@20133" to="TileMap/@StaticBody2D@20133" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@20134" to="TileMap/@StaticBody2D@20134" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@20135" to="TileMap/@StaticBody2D@20135" method="_on_tree_exited"]
+[connection signal="body_entered" from="Pit" to="PlayerBear" method="_on_pit_body_entered"]

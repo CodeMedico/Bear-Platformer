@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://66dsm6gn86f0"]
+
+[ext_resource type="Texture2D" uid="uid://bcav4ux7qu26q" path="res://Fluffy-white-cartoon-cloud-on-blue-sky-on-transparent-PNG.png" id="1_p333e"]
+[ext_resource type="Script" path="res://SceneTransition.cs" id="1_qtdnf"]
+
+[sub_resource type="Animation" id="Animation_m2grs"]
+resource_name = "CloudIn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1339, 211), Vector2(647, 211)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_2ef11"]
+resource_name = "CloudOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(647, 211), Vector2(2502, 211)]
+}
+
+[sub_resource type="Animation" id="Animation_kuvpa"]
+resource_name = "RESET"
+length = 0.01
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h6tfw"]
+_data = {
+"CloudIn": SubResource("Animation_m2grs"),
+"CloudOut": SubResource("Animation_2ef11"),
+"RESET": SubResource("Animation_kuvpa")
+}
+
+[node name="SceneTransition" type="CanvasLayer"]
+layer = 31
+script = ExtResource("1_qtdnf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1339, 211)
+scale = Vector2(0.62778, 0.62778)
+texture = ExtResource("1_p333e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h6tfw")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="OnAnimationFinished"]

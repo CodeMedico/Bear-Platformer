@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://dw0jxhlqb48tj"]
+
+[ext_resource type="Texture2D" uid="uid://brh3fhpy40n0k" path="res://Turtle.png" id="2_lu3mq"]
+[ext_resource type="Script" path="res://Sheller.cs" id="2_ov4th"]
+[ext_resource type="Texture2D" uid="uid://oc34ss4eatfw" path="res://Turtle2.png" id="3_02nki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rrt6"]
+size = Vector2(119, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y00oy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rliiq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lu3mq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_02nki")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.0
+}]
+
+[node name="Sheller" type="Area2D"]
+collision_layer = 16
+script = ExtResource("2_ov4th")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6.5, 33.5)
+shape = SubResource("RectangleShape2D_8rrt6")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-35, 23)
+collision_mask = 174
+
+[node name="RayCast2DWall" type="RayCast2D" parent="."]
+position = Vector2(6, 9)
+rotation = 1.57079
+collision_mask = 166
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(-6, 0)
+scale = Vector2(5.30856, 1.6)
+shape = SubResource("RectangleShape2D_y00oy")
+target_position = Vector2(0, -22.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(9, 37)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_rliiq")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.115522
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]

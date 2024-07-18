@@ -1,0 +1,336 @@
+[gd_scene load_steps=15 format=3 uid="uid://c6lcjphmqdvwl"]
+
+[ext_resource type="TileSet" uid="uid://c35v2hh0f2ivs" path="res://Terrain40x40.tres" id="2_83x4c"]
+[ext_resource type="PackedScene" uid="uid://l2bng6sfsbq0" path="res://PlayerBear.tscn" id="2_igltl"]
+[ext_resource type="PackedScene" uid="uid://csva3xna5r0kl" path="res://spike.tscn" id="4_2lijh"]
+[ext_resource type="PackedScene" uid="uid://66dsm6gn86f0" path="res://sceneTransition.tscn" id="5_5rd1o"]
+[ext_resource type="PackedScene" uid="uid://c8g8fq0gsuj11" path="res://death_transition.tscn" id="6_bpl0e"]
+[ext_resource type="PackedScene" uid="uid://c7ajfcltfm65p" path="res://honey.tscn" id="7_eqgqs"]
+[ext_resource type="PackedScene" uid="uid://xro0g2ni6081" path="res://ui.tscn" id="8_fwba3"]
+[ext_resource type="PackedScene" uid="uid://cgx6oguyibhgo" path="res://slime.tscn" id="9_p67ky"]
+[ext_resource type="PackedScene" uid="uid://ck1arftfic7le" path="res://rotattionSaw.tscn" id="10_7sudc"]
+[ext_resource type="PackedScene" uid="uid://diwav227xa73w" path="res://saw.tscn" id="11_j2sc6"]
+[ext_resource type="Texture2D" uid="uid://b8dn11agg7gto" path="res://TreesTransperent.png" id="12_dq8l3"]
+[ext_resource type="Texture2D" uid="uid://dyfcwcf0xnc66" path="res://SkyBox.png" id="13_6lsef"]
+[ext_resource type="Texture2D" uid="uid://cajdrub7joyyq" path="res://BackGround.png" id="14_xnia6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6a4y"]
+size = Vector2(20587, 194)
+
+[node name="Level7" type="Node2D"]
+
+[node name="PlayerBear" parent="." instance=ExtResource("2_igltl")]
+position = Vector2(165, 1086)
+
+[node name="MainCamera" type="Camera2D" parent="PlayerBear"]
+unique_name_in_owner = true
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+limit_right = 2300
+limit_bottom = 1296
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(2265, -147)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_83x4c")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 786432, 65537, -65536, 786432, 65537, -131072, 720896, 1, -196608, 720896, 0, -851968, 720896, 1, -786432, 720896, 1, -720896, 786432, 1, -655360, 720896, 1, -589824, 786432, 1, -524288, 720896, 1, -458752, 720896, 1, -393216, 786432, 65537, -327680, 720896, 1, -262144, 720896, 1, -917504, 786432, 65537)
+
+[node name="TileMap2" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(-48, -147)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_83x4c")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 786432, 65537, -65536, 786432, 65537, -131072, 720896, 1, -196608, 720896, 0, -851968, 720896, 1, -786432, 720896, 1, -720896, 786432, 1, -655360, 720896, 1, -589824, 786432, 1, -524288, 720896, 1, -458752, 720896, 1, -393216, 786432, 65537, -327680, 720896, 1, -262144, 720896, 1, -917504, 786432, 65537)
+
+[node name="TileMap3" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(1223, 560)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_83x4c")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 327680, 2, 1, 262144, 2)
+
+[node name="TileMap4" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(1820, 560)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_83x4c")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 327680, 2, 1, 262144, 2)
+
+[node name="TileMap5" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(1820, 840)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_83x4c")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 327680, 2, 1, 262144, 2)
+
+[node name="TileMap7" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(1219, 260)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_83x4c")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 327680, 2, 1, 262144, 2)
+
+[node name="TileMap8" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(1200, -71)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_83x4c")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 327680, 2, 1, 262144, 2)
+
+[node name="TileMap6" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(0, 1129)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_83x4c")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 458752, 0, 1, 131072, 0, 65534, 458752, 0, 65535, 196608, 0, 2, 262144, 0, 3, 393216, 0, 4, 131072, 0, 5, 65536, 0, 6, 65536, 0, 7, 327680, 0, 8, 458752, 0, 9, 196608, 0, 10, 131072, 0, 11, 196608, 0, 12, 65536, 0, 13, 327680, 0, 14, 131072, 0, 15, 131072, 0, 16, 65536, 0, 17, 65536, 0, 18, 131072, 0, 19, 458752, 0, 20, 458752, 0, 21, 524288, 0, 22, 65536, 0, 23, 131072, 0, 24, 524288, 0, 25, 196608, 0, 26, 458752, 0, 27, 196608, 0, 28, 458752, 0, 131070, 65536, 4, 131071, 262144, 8, 65536, 327680, 8, 65537, 458752, 1, 65538, 196608, 8, 131075, 458752, 1, 131076, 524288, 3, 131077, 524288, 1, 131078, 524288, 3, 131079, 65536, 6, 131080, 131072, 8, 131081, 458752, 1, 131082, 524288, 1, 65547, 327680, 8, 65548, 458752, 1, 65549, 262144, 8, 65550, 65536, 6, 65551, 65536, 5, 65552, 524288, 2, 65553, 458752, 8, 65554, 65536, 7, 65555, 65536, 2, 65556, 65536, 6, 65557, 65536, 4, 65558, 131072, 8, 65559, 65536, 6, 65560, 262144, 1, 65561, 524288, 6, 65562, 131072, 1, 65563, 196608, 8, 65564, 327680, 8, 131100, 524288, 1, 131099, 524288, 3, 131098, 524288, 1, 131097, 65536, 6, 131096, 524288, 4, 131095, 196608, 1, 131094, 65536, 3, 131093, 524288, 6, 131092, 327680, 1, 131091, 327680, 8, 131090, 524288, 5, 131089, 65536, 8, 131088, 524288, 3, 131087, 65536, 4, 131086, 65536, 1, 131085, 524288, 6, 131084, 524288, 6, 131083, 65536, 7, 65546, 65536, 6, 65545, 65536, 2, 65544, 65536, 2, 65543, 196608, 8, 65542, 65536, 5, 65541, 65536, 7, 65540, 65536, 2, 65539, 393216, 1, 131074, 65536, 1, 131073, 131072, 1, 131072, 65536, 6, 196607, 65536, 2, 196606, 524288, 5, -983040, 720896, 1, -983039, 196608, 0, -983038, 131072, 0, -983037, 262144, 0, -983036, 131072, 0, -983035, 458752, 0, -983034, 65536, 0, -983033, 65536, 0, -983032, 458752, 0, -983031, 65536, 0, -983030, 327680, 0, -983029, 393216, 0, -983028, 327680, 0, -983027, 131072, 0, -983026, 131072, 0, -983023, 131072, 0, -983022, 393216, 0, -983021, 65536, 0, -983020, 393216, 0, -983019, 393216, 0, -983018, 262144, 0, -983017, 393216, 0, -983016, 524288, 0, -983015, 196608, 0, -983014, 196608, 0, -983013, 327680, 0, -983012, 720896, 1, -983011, 720896, 1, -917505, 720896, 1, -1835009, 720896, 1, -1900545, 720896, 1)
+
+[node name="Spikes" type="Node2D" parent="."]
+
+[node name="Spike" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1840, 810)
+
+[node name="Spike2" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1880, 810)
+
+[node name="Spike3" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1920, 810)
+
+[node name="Spike4" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1960, 810)
+
+[node name="Spike9" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1244, 528)
+
+[node name="Spike10" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1284, 528)
+
+[node name="Spike11" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1324, 528)
+
+[node name="Spike12" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1364, 528)
+
+[node name="Spike5" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1840, 530)
+
+[node name="Spike6" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1880, 530)
+
+[node name="Spike7" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1920, 530)
+
+[node name="Spike13" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1239, 230)
+
+[node name="Spike14" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1279, 230)
+
+[node name="Spike15" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1319, 230)
+
+[node name="Spike16" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1359, 230)
+
+[node name="Spike17" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1224, -100)
+
+[node name="Spike18" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1264, -100)
+
+[node name="Spike19" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1304, -100)
+
+[node name="Spike20" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1344, -100)
+
+[node name="Spike21" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(368, -100)
+
+[node name="Spike22" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(408, -100)
+
+[node name="Spike23" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(448, -100)
+
+[node name="Spike24" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(488, -100)
+
+[node name="Spike25" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(2007, -100)
+
+[node name="Spike26" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(2047, -100)
+
+[node name="Spike27" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(2087, -100)
+
+[node name="Spike28" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(2127, -100)
+
+[node name="Spike8" parent="Spikes" instance=ExtResource("4_2lijh")]
+position = Vector2(1960, 530)
+
+[node name="SceneTransition" parent="." instance=ExtResource("5_5rd1o")]
+
+[node name="DeathTransition" parent="." instance=ExtResource("6_bpl0e")]
+
+[node name="Honeys" type="Node2D" parent="."]
+
+[node name="Honey" parent="Honeys" instance=ExtResource("7_eqgqs")]
+position = Vector2(1900.2, 500)
+
+[node name="Honey2" parent="Honeys" instance=ExtResource("7_eqgqs")]
+position = Vector2(1900.2, 780)
+
+[node name="Honey3" parent="Honeys" instance=ExtResource("7_eqgqs")]
+position = Vector2(1299, 508)
+
+[node name="Honey4" parent="Honeys" instance=ExtResource("7_eqgqs")]
+position = Vector2(1299, 203)
+
+[node name="Honey5" parent="Honeys" instance=ExtResource("7_eqgqs")]
+position = Vector2(89, -1010)
+
+[node name="Honey6" parent="Honeys" instance=ExtResource("7_eqgqs")]
+position = Vector2(2209, -1010)
+
+[node name="UI" parent="." node_paths=PackedStringArray("characterBody2D") instance=ExtResource("8_fwba3")]
+characterBody2D = NodePath("../PlayerBear")
+
+[node name="Slime" parent="." instance=ExtResource("9_p67ky")]
+position = Vector2(1149, -161)
+
+[node name="Saws" type="Node2D" parent="."]
+
+[node name="RotationSaw" parent="Saws" instance=ExtResource("10_7sudc")]
+position = Vector2(-19, -1014)
+
+[node name="RotationSaw2" parent="Saws" instance=ExtResource("10_7sudc")]
+position = Vector2(2321, -1010)
+
+[node name="Saw" parent="Saws" instance=ExtResource("11_j2sc6")]
+position = Vector2(19, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw2" parent="Saws" instance=ExtResource("11_j2sc6")]
+modulate = Color(0.517647, 0.517647, 0.517647, 1)
+z_index = -10
+position = Vector2(200, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw3" parent="Saws" instance=ExtResource("11_j2sc6")]
+position = Vector2(387, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw4" parent="Saws" instance=ExtResource("11_j2sc6")]
+modulate = Color(0.517647, 0.517647, 0.517647, 1)
+z_index = -10
+position = Vector2(569, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw5" parent="Saws" instance=ExtResource("11_j2sc6")]
+position = Vector2(752, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw6" parent="Saws" instance=ExtResource("11_j2sc6")]
+modulate = Color(0.517647, 0.517647, 0.517647, 1)
+z_index = -10
+position = Vector2(935, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw7" parent="Saws" instance=ExtResource("11_j2sc6")]
+position = Vector2(1121, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw8" parent="Saws" instance=ExtResource("11_j2sc6")]
+modulate = Color(0.517647, 0.517647, 0.517647, 1)
+z_index = -10
+position = Vector2(1303, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw9" parent="Saws" instance=ExtResource("11_j2sc6")]
+position = Vector2(1486, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw10" parent="Saws" instance=ExtResource("11_j2sc6")]
+modulate = Color(0.517647, 0.517647, 0.517647, 1)
+z_index = -10
+position = Vector2(1670, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw11" parent="Saws" instance=ExtResource("11_j2sc6")]
+position = Vector2(1844, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw12" parent="Saws" instance=ExtResource("11_j2sc6")]
+modulate = Color(0.517647, 0.517647, 0.517647, 1)
+z_index = -10
+position = Vector2(2026, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw13" parent="Saws" instance=ExtResource("11_j2sc6")]
+position = Vector2(2209, -1197)
+scale = Vector2(3, 3)
+
+[node name="Saw14" parent="Saws" instance=ExtResource("11_j2sc6")]
+z_index = -10
+position = Vector2(2321, -54)
+scale = Vector2(3, 3)
+
+[node name="Saw15" parent="Saws" instance=ExtResource("11_j2sc6")]
+z_index = -45
+position = Vector2(0, -54)
+scale = Vector2(3, 3)
+
+[node name="Pit" type="Area2D" parent="."]
+position = Vector2(1543.06, -397.913)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pit"]
+position = Vector2(343, 1914)
+shape = SubResource("RectangleShape2D_v6a4y")
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = -110
+offset = Vector2(0, 70)
+scale = Vector2(0.635, 0.635)
+transform = Transform2D(0.635, 0, 0, 0.635, 0, 70)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(829.921, 738.583)
+motion_scale = Vector2(0.5, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
+texture_repeat = 2
+position = Vector2(8708.66, 45.669)
+scale = Vector2(3.04862, 3.05483)
+texture = ExtResource("12_dq8l3")
+region_enabled = true
+region_rect = Rect2(0.669342, 193.476, 6500.89, 886.871)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -35
+position = Vector2(2349.61, -406.299)
+scale = Vector2(2.4045, 1.48751)
+texture = ExtResource("13_6lsef")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -55
+position = Vector2(3922.83, 1322.83)
+scale = Vector2(4.40429, 4.40429)
+texture = ExtResource("14_xnia6")
+
+[connection signal="body_entered" from="Pit" to="PlayerBear" method="_on_pit_body_entered"]

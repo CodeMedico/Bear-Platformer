@@ -1,0 +1,141 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3p2j8crjwl5m"]
+
+[ext_resource type="PackedScene" uid="uid://l2bng6sfsbq0" path="res://PlayerBear.tscn" id="1_0bndm"]
+[ext_resource type="TileSet" uid="uid://c35v2hh0f2ivs" path="res://Terrain40x40.tres" id="3_ma8qa"]
+[ext_resource type="PackedScene" uid="uid://xro0g2ni6081" path="res://ui.tscn" id="3_n8wvs"]
+[ext_resource type="PackedScene" uid="uid://c8g8fq0gsuj11" path="res://death_transition.tscn" id="4_jlwco"]
+[ext_resource type="PackedScene" uid="uid://diwav227xa73w" path="res://saw.tscn" id="5_v0hv7"]
+[ext_resource type="PackedScene" uid="uid://c7ajfcltfm65p" path="res://honey.tscn" id="6_sjnqo"]
+[ext_resource type="PackedScene" uid="uid://ck1arftfic7le" path="res://rotattionSaw.tscn" id="6_sld0p"]
+[ext_resource type="Texture2D" uid="uid://b8dn11agg7gto" path="res://TreesTransperent.png" id="8_1mkyu"]
+[ext_resource type="Texture2D" uid="uid://dyfcwcf0xnc66" path="res://SkyBox.png" id="9_q6a37"]
+[ext_resource type="Texture2D" uid="uid://cajdrub7joyyq" path="res://BackGround.png" id="10_hexrm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8sak"]
+size = Vector2(20587, 194)
+
+[node name="Level5" type="Node2D"]
+
+[node name="PlayerBear" parent="." instance=ExtResource("1_0bndm")]
+position = Vector2(66, 1066)
+
+[node name="MainCamera" type="Camera2D" parent="PlayerBear"]
+unique_name_in_owner = true
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+limit_top = 0
+limit_right = 3640
+limit_bottom = 1300
+
+[node name="TileMap2" type="TileMap" parent="."]
+scale = Vector2(2, 2)
+tile_set = ExtResource("3_ma8qa")
+format = 2
+layer_0/tile_data = PackedInt32Array(917504, 65536, 0, 917505, 131072, 0, 917506, 458752, 0, 917507, 131072, 0, 917508, 262144, 0, 917509, 262144, 0, 917510, 131072, 0, 917511, 524288, 0, 917512, 65536, 0, 917513, 524288, 0, 917514, 131072, 0, 917515, 131072, 0, 917516, 327680, 0, 917517, 196608, 0, 917518, 524288, 0, 917519, 393216, 0, 917520, 393216, 0, 917521, 196608, 0, 917522, 196608, 0, 917523, 196608, 0, 917524, 65536, 0, 917525, 524288, 0, 917526, 65536, 0, 917527, 327680, 0, 917528, 65536, 0, 917529, 393216, 0, 917530, 720896, 1, 917531, 720896, 0, 917532, 720896, 1, 917533, 720896, 1, 917534, 720896, 1, 917535, 720896, 1, 917536, 720896, 0, 917537, 720896, 1, 917538, 196608, 0, 917539, 262144, 0, 917540, 327680, 0, 917541, 720896, 0, 917542, 720896, 1, 917543, 786432, 1, 917544, 720896, 1, 917545, 720896, 0, 917546, 131072, 0, 917547, 393216, 0, 917548, 524288, 0, 917549, 196608, 0, 983085, 393216, 1, 983084, 65536, 8, 983083, 131072, 8, 983082, 262144, 1, 983081, 65536, 5, 983080, 524288, 2, 983079, 327680, 1, 983078, 524288, 6, 983077, 524288, 6, 983076, 262144, 8, 983075, 524288, 3, 983074, 196608, 8, 983073, 131072, 1, 983072, 65536, 3, 983071, 65536, 5, 983070, 524288, 7, 983069, 393216, 8, 983068, 458752, 1, 983067, 262144, 8, 983066, 65536, 2, 983065, 262144, 8, 983064, 196608, 1, 983063, 131072, 8, 983062, 65536, 1, 983061, 131072, 1, 983060, 327680, 8, 983059, 524288, 1, 983058, 327680, 1, 983057, 196608, 1, 983056, 524288, 3, 983055, 262144, 8, 983054, 393216, 8, 983053, 393216, 1, 983052, 65536, 3, 983051, 458752, 1, 983050, 524288, 6, 983049, 524288, 1, 983048, 65536, 7, 983047, 524288, 7, 983046, 393216, 1, 983045, 65536, 6, 983044, 262144, 1, 983043, 524288, 7, 983042, 65536, 6, 983041, 262144, 1, 983040, 458752, 8, 917503, 589824, 7, 851967, 589824, 1, 786431, 589824, 3, 720895, 589824, 5, 655359, 589824, 7, 589823, 589824, 7, 524287, 589824, 2, 458751, 589824, 2, 393215, 589824, 6, 327679, 589824, 2, 262143, 589824, 2, 196607, 589824, 1, 131071, 589824, 1, 65535, 196608, 3, 0, 393216, 9, 1, 65536, 9, 2, 393216, 9, 3, 458752, 9, 4, 524288, 9, 5, 327680, 9, 6, 131072, 9, 7, 65536, 9, 8, 196608, 9, 9, 524288, 9, 10, 196608, 9, 11, 524288, 9, 12, 196608, 9, 13, 65536, 9, 14, 393216, 9, 15, 196608, 9, 16, 131072, 9, 17, 65536, 9, 18, 458752, 9, 19, 131072, 9, 20, 458752, 9, 21, 458752, 9, 22, 131072, 9, 23, 131072, 9, 24, 524288, 9, 25, 65536, 9, 26, 327680, 9, 27, 262144, 9, 28, 393216, 9, 29, 524288, 9, 30, 196608, 9, 31, 327680, 9, 32, 65536, 9, 33, 196608, 9, 34, 524288, 9, 35, 524288, 9, 36, 262144, 9, 37, 196608, 9, 38, 262144, 9, 39, 327680, 9, 40, 393216, 9, 41, 65536, 9, 42, 65536, 9, 43, 196608, 9, 44, 262144, 9, 45, 393216, 9, 46, 131072, 9, 47, 131072, 9, 48, 327680, 9, 49, 524288, 9, 50, 458752, 9, 51, 262144, 9, 65544, 720896, 1, 131080, 720896, 1, 196616, 786432, 65537, 262152, 720896, 1, 327688, 786432, 65537, 393224, 720896, 1, 458760, 720896, 0, 524296, 720896, 1, 851976, 786432, 0, 720913, 720896, 0, 786449, 720896, 1, 851985, 786432, 0, 393233, 720896, 0, 327697, 720896, 1, 262161, 786432, 65537, 196625, 720896, 1, 131089, 786432, 65537, 65553, 720896, 1, 983039, 196608, 6, 589863, 720896, 0, 524327, 786432, 65537, 458791, 786432, 0, 393255, 786432, 1, 327719, 720896, 1, 262183, 720896, 1, 196647, 786432, 65537, 131111, 720896, 1, 65575, 720896, 1)
+
+[node name="UI" parent="." node_paths=PackedStringArray("characterBody2D") instance=ExtResource("3_n8wvs")]
+characterBody2D = NodePath("../PlayerBear")
+
+[node name="DeathTransition" parent="." instance=ExtResource("4_jlwco")]
+
+[node name="Pit" type="Area2D" parent="."]
+position = Vector2(1543.06, -397.913)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pit"]
+position = Vector2(343, 1914)
+shape = SubResource("RectangleShape2D_e8sak")
+
+[node name="Saws" type="Node2D" parent="."]
+
+[node name="Saw" parent="Saws" instance=ExtResource("5_v0hv7")]
+z_index = -25
+position = Vector2(683, 1039)
+scale = Vector2(2, 2)
+
+[node name="Saw5" parent="Saws" instance=ExtResource("5_v0hv7")]
+z_index = -25
+position = Vector2(2988, 1126)
+scale = Vector2(2, 2)
+
+[node name="Saw6" parent="Saws" instance=ExtResource("5_v0hv7")]
+z_index = -25
+position = Vector2(3331, 1122)
+scale = Vector2(2, 2)
+
+[node name="Saw7" parent="Saws" instance=ExtResource("5_v0hv7")]
+z_index = -25
+position = Vector2(3159, 791)
+scale = Vector2(2, 2)
+
+[node name="Saw2" parent="Saws" instance=ExtResource("5_v0hv7")]
+z_index = -25
+position = Vector2(680, 721)
+scale = Vector2(2, 2)
+
+[node name="Saw3" parent="Saws" instance=ExtResource("5_v0hv7")]
+z_index = -25
+position = Vector2(1402, 881)
+scale = Vector2(2, 2)
+
+[node name="Saw4" parent="Saws" instance=ExtResource("5_v0hv7")]
+z_index = -25
+position = Vector2(1401, 566)
+scale = Vector2(2, 2)
+
+[node name="RotationSaw" parent="Saws" instance=ExtResource("6_sld0p")]
+position = Vector2(2173, 1126)
+
+[node name="RotationSaw2" parent="Saws" instance=ExtResource("6_sld0p")]
+position = Vector2(2634, 1122)
+rotation = 3.14159
+
+[node name="Honeys" type="Node2D" parent="."]
+
+[node name="Honey" parent="Honeys" instance=ExtResource("6_sjnqo")]
+position = Vector2(683, 877)
+
+[node name="Honey2" parent="Honeys" instance=ExtResource("6_sjnqo")]
+position = Vector2(1410, 715)
+
+[node name="Honey3" parent="Honeys" instance=ExtResource("6_sjnqo")]
+position = Vector2(2402, 1067)
+
+[node name="Honey4" parent="Honeys" instance=ExtResource("6_sjnqo")]
+position = Vector2(3156, 1061)
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = -110
+offset = Vector2(0, 70)
+scale = Vector2(0.635, 0.635)
+transform = Transform2D(0.635, 0, 0, 0.635, 0, 70)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(829.921, 738.583)
+motion_scale = Vector2(0.5, 0.15)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
+texture_repeat = 2
+position = Vector2(6847.24, -81.89)
+scale = Vector2(2.46444, 2.46945)
+texture = ExtResource("8_1mkyu")
+region_enabled = true
+region_rect = Rect2(0.669342, 193.476, 6500.89, 886.871)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -35
+position = Vector2(2343.31, -366.929)
+scale = Vector2(2.4045, 1.48751)
+texture = ExtResource("9_q6a37")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -55
+position = Vector2(2631.46, 1000)
+scale = Vector2(3.08353, 3.08353)
+texture = ExtResource("10_hexrm")
+region_enabled = true
+region_rect = Rect2(-0.129837, 324.643, 1936.57, 429.118)
+
+[connection signal="body_entered" from="Pit" to="PlayerBear" method="_on_pit_body_entered"]

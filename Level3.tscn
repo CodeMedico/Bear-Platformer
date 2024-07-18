@@ -1,0 +1,167 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctc7n40uyej2l"]
+
+[ext_resource type="TileSet" uid="uid://c35v2hh0f2ivs" path="res://Terrain40x40.tres" id="2_ni2bh"]
+[ext_resource type="PackedScene" uid="uid://l2bng6sfsbq0" path="res://PlayerBear.tscn" id="2_ymu7i"]
+[ext_resource type="PackedScene" uid="uid://c7ajfcltfm65p" path="res://honey.tscn" id="3_skrnw"]
+[ext_resource type="PackedScene" uid="uid://diwav227xa73w" path="res://saw.tscn" id="4_ypbe8"]
+[ext_resource type="PackedScene" uid="uid://xro0g2ni6081" path="res://ui.tscn" id="6_x85ij"]
+[ext_resource type="PackedScene" uid="uid://c8g8fq0gsuj11" path="res://death_transition.tscn" id="7_0od8i"]
+[ext_resource type="Texture2D" uid="uid://cv3hr10a7grq6" path="res://CircleMask.png" id="9_1rjq1"]
+[ext_resource type="Texture2D" uid="uid://b8dn11agg7gto" path="res://TreesTransperent.png" id="9_sqvp3"]
+[ext_resource type="Texture2D" uid="uid://dyfcwcf0xnc66" path="res://SkyBox.png" id="10_usetf"]
+[ext_resource type="Texture2D" uid="uid://cajdrub7joyyq" path="res://BackGround.png" id="11_4n18w"]
+
+[sub_resource type="FontFile" id="FontFile_lbxtu"]
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fu2d0"]
+font = SubResource("FontFile_lbxtu")
+font_size = 32
+outline_size = 5
+shadow_size = 21
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbhc6"]
+size = Vector2(20587, 194)
+
+[node name="Level3" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(1, 430)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_ni2bh")
+format = 2
+layer_0/tile_data = PackedInt32Array(65536, 393216, 0, 65537, 65536, 0, 65538, 262144, 0, 65539, 393216, 0, 65540, 196608, 0, 65541, 458752, 0, 65542, 196608, 0, 65543, 262144, 0, 65544, 262144, 0, 65545, 393216, 0, 65546, 458752, 0, 65547, 327680, 0, 65548, 327680, 0, 65549, 65536, 0, 65550, 393216, 6, -393202, 0, 2, -327666, 0, 7, -262130, 0, 3, -196594, 0, 5, -131058, 0, 4, -65522, 0, 1, 14, 0, 3, -458738, 0, 0, -458737, 131072, 0, -458736, 458752, 0, -458735, 458752, 0, -458734, 458752, 0, -458733, 524288, 0, -458732, 196608, 0, -458731, 262144, 0, -458730, 393216, 0, -458729, 393216, 0, -458728, 65536, 0, -458727, 458752, 0, -393201, 393216, 8, -327665, 262144, 8, -262129, 458752, 8, -196593, 327680, 1, -131057, 327680, 8, -65521, 524288, 4, 15, 524288, 4, 65551, 65536, 6, 131087, 65536, 4, -393200, 131072, 8, -327664, 262144, 1, -262128, 524288, 6, -196592, 65536, 7, -131056, 393216, 1, -65520, 393216, 8, 16, 458752, 1, 65552, 65536, 3, 131088, 393216, 1, -393199, 65536, 6, -327663, 65536, 2, -262127, 393216, 8, -196591, 327680, 1, -131055, 65536, 5, -65519, 65536, 1, 17, 65536, 6, 65553, 65536, 1, 131089, 65536, 1, -393198, 65536, 4, -327662, 65536, 4, -262126, 262144, 8, -196590, 524288, 1, -131054, 65536, 4, -65518, 458752, 1, 18, 65536, 6, 65554, 131072, 8, 131090, 524288, 4, -393197, 65536, 7, -327661, 65536, 8, -262125, 65536, 2, -196589, 262144, 1, -131053, 131072, 1, -65517, 458752, 1, 19, 65536, 5, 65555, 524288, 6, 131091, 262144, 1, -393196, 65536, 3, -327660, 327680, 1, -262124, 65536, 8, -196588, 458752, 1, -131052, 524288, 5, -65516, 65536, 1, 20, 393216, 8, 65556, 262144, 8, 131092, 65536, 5, -393195, 262144, 1, -327659, 65536, 8, -262123, 524288, 3, -196587, 524288, 5, -131051, 65536, 7, -65515, 65536, 5, 21, 327680, 1, 65557, 262144, 1, 131093, 65536, 7, -393194, 196608, 1, -327658, 327680, 1, -262122, 393216, 1, -196586, 131072, 8, -131050, 65536, 6, -65514, 65536, 4, 22, 393216, 8, 65558, 524288, 7, 131094, 65536, 8, -393193, 131072, 1, -327657, 196608, 1, -262121, 327680, 8, -196585, 65536, 4, -131049, 65536, 4, -65513, 327680, 1, 23, 524288, 3, 65559, 65536, 7, 131095, 65536, 1, -393192, 524288, 7, -327656, 524288, 8, -262120, 327680, 1, -196584, 524288, 4, -131048, 65536, 3, -65512, 524288, 7, 24, 524288, 4, 65560, 393216, 1, 131096, 524288, 6, -393191, 65536, 1, -327655, 196608, 8, -262119, 524288, 8, -196583, 524288, 6, -131047, 262144, 1, -65511, 196608, 8, 25, 65536, 3, 65561, 524288, 3, 131097, 524288, 1, 131075, 65536, 2, 131076, 524288, 3, 131077, 262144, 8, 131078, 196608, 8, 131079, 65536, 7, 131080, 262144, 8, 131081, 65536, 5, 131082, 524288, 6, 131083, 65536, 1, 131084, 65536, 1, 131085, 524288, 1, 131086, 65536, 5, 131072, 524288, 7, 131073, 65536, 1, 131074, 458752, 8, -131072, 1, 65536, -131071, 1, 65536, -131070, 1, 65536, -131069, 1, 65536, -131068, 1, 65536, -131067, 1, 65536, -131066, 1, 65536, -131065, 1, 65536, -131064, 1, 65536, -131063, 1, 65536, -131062, 1, 65536, -131061, 1, 65536, -131060, 1, 65536, -131059, 1, 65536)
+
+[node name="PlayerBear" parent="." instance=ExtResource("2_ymu7i")]
+position = Vector2(125, 444)
+
+[node name="MainCamera" type="Camera2D" parent="PlayerBear"]
+unique_name_in_owner = true
+zoom = Vector2(0.6, 0.6)
+limit_left = 0
+limit_right = 2000
+limit_bottom = 640
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="Honey" parent="." instance=ExtResource("3_skrnw")]
+position = Vector2(416, -246)
+
+[node name="Honey2" parent="." instance=ExtResource("3_skrnw")]
+position = Vector2(1874, -206)
+
+[node name="Saw" parent="." instance=ExtResource("4_ypbe8")]
+z_index = -40
+position = Vector2(1124, -127)
+
+[node name="UI" parent="." node_paths=PackedStringArray("characterBody2D") instance=ExtResource("6_x85ij")]
+characterBody2D = NodePath("../PlayerBear")
+
+[node name="ToolTip" type="CanvasLayer" parent="UI"]
+
+[node name="ColorRect" type="ColorRect" parent="UI/ToolTip"]
+offset_right = 2408.0
+offset_bottom = 1338.0
+color = Color(0, 0, 0, 0.756863)
+
+[node name="Label" type="Label" parent="UI/ToolTip"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -26.0
+offset_right = 104.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Use dash(press 'Z') or long press jump
+to complete level"
+label_settings = SubResource("LabelSettings_fu2d0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathTransition" parent="." instance=ExtResource("7_0od8i")]
+
+[node name="Pit" type="Area2D" parent="."]
+position = Vector2(1543.06, -397.913)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pit"]
+position = Vector2(343, 1914)
+shape = SubResource("RectangleShape2D_tbhc6")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1472, -1047)
+energy = 0.5
+range_layer_min = -165
+shadow_enabled = true
+texture = ExtResource("9_1rjq1")
+texture_scale = 15.41
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = -110
+offset = Vector2(0, 70)
+scale = Vector2(0.635, 0.635)
+transform = Transform2D(0.635, 0, 0, 0.635, 0, 70)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(829.921, 738.583)
+motion_scale = Vector2(0.5, 0.15)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
+texture_repeat = 2
+position = Vector2(8724.41, -200)
+scale = Vector2(3.04862, 3.05483)
+texture = ExtResource("9_sqvp3")
+region_enabled = true
+region_rect = Rect2(0.669342, 193.476, 6500.89, 886.871)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -35
+position = Vector2(2343.31, -366.929)
+scale = Vector2(2.4045, 1.48751)
+texture = ExtResource("10_usetf")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -55
+position = Vector2(2631.46, 1000)
+scale = Vector2(3.08353, 3.08353)
+texture = ExtResource("11_4n18w")
+region_enabled = true
+region_rect = Rect2(-0.129837, 324.643, 1936.57, 429.118)
+
+[connection signal="tree_exited" from="TileMap/UnstableBlock" to="TileMap/UnstableBlock" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289591" to="TileMap/@StaticBody2D@289591" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289592" to="TileMap/@StaticBody2D@289592" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289593" to="TileMap/@StaticBody2D@289593" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289594" to="TileMap/@StaticBody2D@289594" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289595" to="TileMap/@StaticBody2D@289595" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289596" to="TileMap/@StaticBody2D@289596" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289597" to="TileMap/@StaticBody2D@289597" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289598" to="TileMap/@StaticBody2D@289598" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289599" to="TileMap/@StaticBody2D@289599" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289600" to="TileMap/@StaticBody2D@289600" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289601" to="TileMap/@StaticBody2D@289601" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289602" to="TileMap/@StaticBody2D@289602" method="_on_tree_exited"]
+[connection signal="tree_exited" from="TileMap/@StaticBody2D@289603" to="TileMap/@StaticBody2D@289603" method="_on_tree_exited"]
+[connection signal="body_entered" from="Pit" to="PlayerBear" method="_on_pit_body_entered"]

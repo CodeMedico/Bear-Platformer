@@ -1,0 +1,250 @@
+[gd_scene load_steps=23 format=3 uid="uid://dp4tfe5fog1fv"]
+
+[ext_resource type="PackedScene" uid="uid://c8g8fq0gsuj11" path="res://death_transition.tscn" id="1_dsd2e"]
+[ext_resource type="PackedScene" uid="uid://xro0g2ni6081" path="res://ui.tscn" id="3_nkmqv"]
+[ext_resource type="PackedScene" uid="uid://l2bng6sfsbq0" path="res://PlayerBear.tscn" id="5_4gcqx"]
+[ext_resource type="PackedScene" uid="uid://c7ajfcltfm65p" path="res://honey.tscn" id="6_wlxye"]
+[ext_resource type="TileSet" uid="uid://c35v2hh0f2ivs" path="res://Terrain40x40.tres" id="7_1ktha"]
+[ext_resource type="Texture2D" uid="uid://dckj5ms03bajf" path="res://SparksMask.png" id="10_ca2by"]
+[ext_resource type="Texture2D" uid="uid://cv3hr10a7grq6" path="res://CircleMask.png" id="11_c41qk"]
+[ext_resource type="Texture2D" uid="uid://b8dn11agg7gto" path="res://TreesTransperent.png" id="13_4vcc0"]
+[ext_resource type="PackedScene" uid="uid://diwav227xa73w" path="res://saw.tscn" id="13_eqqdc"]
+[ext_resource type="Texture2D" uid="uid://dyfcwcf0xnc66" path="res://SkyBox.png" id="14_yw3g5"]
+[ext_resource type="Texture2D" uid="uid://cajdrub7joyyq" path="res://BackGround.png" id="15_oya8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bk5cx"]
+size = Vector2(20587, 194)
+
+[sub_resource type="Animation" id="Animation_vxm7q"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.0001, 1.0002, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2561, -560), Vector2(2561, -83), Vector2(2000, -83), Vector2(2561, -82), Vector2(2561, -560)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ihg42"]
+_data = {
+"new_animation": SubResource("Animation_vxm7q")
+}
+
+[sub_resource type="Curve" id="Curve_82w5g"]
+_data = [Vector2(0, 0.0663475), 0.0, 0.0, 0, 0, Vector2(0.99661, 0.0663475), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6w3ap"]
+_data = [Vector2(0.0169491, 0.395349), 0.0, 0.0, 0, 0, Vector2(1, 0.137483), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ioajl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_uadgg"]
+curve_x = SubResource("Curve_82w5g")
+curve_y = SubResource("Curve_6w3ap")
+curve_z = SubResource("Curve_ioajl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ffjyr"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.66
+spread = 180.0
+initial_velocity_min = 94.0
+initial_velocity_max = 94.53
+gravity = Vector3(0, -20, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveXYZTexture_uadgg")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7npen"]
+diffuse_texture = ExtResource("10_ca2by")
+specular_texture = ExtResource("10_ca2by")
+
+[sub_resource type="Animation" id="Animation_msk8d"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2000, -583.602), Vector2(2000, -85), Vector2(2000, -583.602)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mawmb"]
+_data = {
+"new_animation": SubResource("Animation_msk8d")
+}
+
+[node name="Level14" type="Node2D"]
+
+[node name="DeathTransition" parent="." instance=ExtResource("1_dsd2e")]
+
+[node name="UI" parent="." node_paths=PackedStringArray("characterBody2D") instance=ExtResource("3_nkmqv")]
+characterBody2D = NodePath("../PlayerBear")
+
+[node name="PlayerBear" parent="." instance=ExtResource("5_4gcqx")]
+position = Vector2(235, 646)
+
+[node name="MainCamera" type="Camera2D" parent="PlayerBear"]
+unique_name_in_owner = true
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="Pit" type="Area2D" parent="."]
+position = Vector2(2403, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pit"]
+position = Vector2(343, 1914)
+shape = SubResource("RectangleShape2D_bk5cx")
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="Pit"]
+layer = -90
+offset = Vector2(0, 70)
+scale = Vector2(0.635, 0.635)
+transform = Transform2D(0.635, 0, 0, 0.635, 0, 70)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Pit/ParallaxBackground2"]
+position = Vector2(839.37, 1212.6)
+motion_scale = Vector2(0.5, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pit/ParallaxBackground2/ParallaxLayer2"]
+texture_repeat = 2
+position = Vector2(8724.41, -200)
+scale = Vector2(3.04862, 3.05483)
+texture = ExtResource("13_4vcc0")
+region_enabled = true
+region_rect = Rect2(0.669342, 193.476, 6500.89, 886.871)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Pit/ParallaxBackground2"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pit/ParallaxBackground2/ParallaxLayer"]
+z_index = -35
+position = Vector2(2343.31, -366.929)
+scale = Vector2(2.4045, 1.48751)
+texture = ExtResource("14_yw3g5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pit/ParallaxBackground2/ParallaxLayer"]
+z_index = -55
+position = Vector2(2680.32, 1464.57)
+scale = Vector2(3.08353, 3.08353)
+texture = ExtResource("15_oya8k")
+region_enabled = true
+region_rect = Rect2(-0.129837, 324.643, 1936.57, 429.118)
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(2, 2)
+tile_set = ExtResource("7_1ktha")
+format = 2
+layer_0/tile_data = PackedInt32Array(589826, 196608, 0, 589827, 131072, 0, 589828, 196608, 0, 327689, 720896, 0, 393225, 720896, 1, 458761, 0, 8, 524297, 0, 1, 589833, 0, 5, 655369, 0, 7, 720905, 0, 8, 786441, 0, 2, 327690, 720896, 1, 393226, 720896, 1, 458762, 589824, 6, 524298, 589824, 3, 589834, 589824, 7, 655370, 589824, 4, 720906, 589824, 3, 786442, 589824, 8, 327696, 720896, 1, 393232, 720896, 1, 458768, 0, 3, 524304, 0, 4, 589840, 0, 7, 655376, 0, 8, 720912, 0, 3, 786448, 0, 1, 327697, 720896, 0, 393233, 720896, 1, 458769, 589824, 4, 524305, 589824, 7, 589841, 589824, 7, 655377, 589824, 8, 720913, 589824, 2, 786449, 589824, 7, 327704, 720896, 1, 393240, 720896, 1, 458776, 589824, 1, 524312, 589824, 3, 589848, 589824, 7, 655384, 589824, 1, 327703, 720896, 0, 393239, 720896, 1, 458775, 0, 1, 524311, 0, 7, 589847, 0, 6, 655383, 0, 6, 327710, 0, 6, 393246, 0, 4, 458782, 0, 6, 524318, 0, 4, 589854, 0, 6, 655390, 0, 3, 262174, 720896, 1, 262175, 720896, 1, 327711, 589824, 4, 393247, 589824, 6, 458783, 589824, 6, 524319, 589824, 6, 589855, 589824, 2, 655391, 589824, 5, 196639, 720896, 0, 196638, 720896, 1, -393179, 720896, 1, -327643, 0, 5, -262107, 0, 2, -196571, 0, 5, -131035, 0, 1, -65499, 0, 6, 37, 0, 8, 65573, 0, 2, 131109, 0, 6, 196645, 0, 1, 262181, 0, 3, 327717, 0, 6, 393253, 0, 6, -393178, 720896, 1, -327642, 589824, 3, -262106, 589824, 8, -196570, 589824, 4, -131034, 589824, 1, -65498, 589824, 2, 38, 589824, 2, 65574, 589824, 1, 131110, 589824, 1, 196646, 589824, 7, 262182, 589824, 4, 327718, 589824, 4, 393254, 589824, 4, -393185, 720896, 1, -327649, 589824, 1, -262113, 589824, 7, -196577, 589824, 3, -131041, 589824, 8, -458721, 720896, 1, -458715, 720896, 1, -458714, 720896, 0, -458722, 720896, 0, -393186, 720896, 1, -327650, 0, 7, -262114, 0, 6, -196578, 0, 1, -131042, 0, 7, -458729, 720896, 1, -393193, 0, 2, -327657, 0, 8, -262121, 0, 7, -196585, 0, 7, -131049, 0, 2, -524265, 720896, 1, -524264, 720896, 0, -458728, 720896, 1, -393192, 589824, 4, -327656, 589824, 4, -262120, 589824, 4, -196584, 589824, 6, -131048, 589824, 2)
+
+[node name="Saw" parent="." instance=ExtResource("13_eqqdc")]
+z_index = -10
+position = Vector2(801, 398)
+scale = Vector2(2, 2)
+
+[node name="Saw2" parent="." instance=ExtResource("13_eqqdc")]
+z_index = -10
+position = Vector2(1360, 398)
+scale = Vector2(2, 2)
+
+[node name="Saw3" parent="." instance=ExtResource("13_eqqdc")]
+z_index = -10
+position = Vector2(1923, 398)
+scale = Vector2(2, 2)
+
+[node name="Saw4" parent="." instance=ExtResource("13_eqqdc")]
+z_index = -10
+position = Vector2(2481, 239)
+scale = Vector2(2, 2)
+
+[node name="Saw5" parent="." instance=ExtResource("13_eqqdc")]
+z_index = -10
+position = Vector2(3039, -560)
+scale = Vector2(2, 2)
+
+[node name="Saw6" parent="." instance=ExtResource("13_eqqdc")]
+z_index = -10
+position = Vector2(2482, -559)
+scale = Vector2(2, 2)
+
+[node name="Saw7" parent="." instance=ExtResource("13_eqqdc")]
+z_index = -10
+position = Vector2(1921, -642)
+scale = Vector2(2, 2)
+
+[node name="Honey" parent="." instance=ExtResource("6_wlxye")]
+position = Vector2(2477, 47)
+
+[node name="Honey2" parent="." instance=ExtResource("6_wlxye")]
+position = Vector2(1364, 190)
+
+[node name="Honey3" parent="." instance=ExtResource("6_wlxye")]
+position = Vector2(2917, -204)
+
+[node name="Honey4" parent="." instance=ExtResource("6_wlxye")]
+position = Vector2(1790, -364)
+
+[node name="Saw8" parent="." instance=ExtResource("13_eqqdc")]
+self_modulate = Color(68.639, 71.006, 72.781, 1)
+position = Vector2(2561, -241.777)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Saw8" groups=["Animations"]]
+libraries = {
+"": SubResource("AnimationLibrary_ihg42")
+}
+autoplay = "new_animation"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Saw8"]
+self_modulate = Color(2.959, 2, 1, 1)
+position = Vector2(1, 0)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_ffjyr")
+texture = ExtResource("10_ca2by")
+lifetime = 0.1
+
+[node name="Saw9" parent="." instance=ExtResource("13_eqqdc")]
+position = Vector2(2000, -583.602)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Saw9"]
+self_modulate = Color(2.959, 2, 1, 1)
+position = Vector2(1, 0)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_ffjyr")
+texture = SubResource("CanvasTexture_7npen")
+lifetime = 0.1
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Saw9" groups=["Animations"]]
+libraries = {
+"": SubResource("AnimationLibrary_mawmb")
+}
+autoplay = "new_animation"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(3524, -2207)
+range_layer_min = -100
+shadow_enabled = true
+shadow_filter = 2
+texture = ExtResource("11_c41qk")
+texture_scale = 18.98
+
+[connection signal="body_entered" from="Pit" to="PlayerBear" method="_on_pit_body_entered"]

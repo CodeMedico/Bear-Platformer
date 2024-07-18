@@ -1,0 +1,149 @@
+[gd_scene load_steps=11 format=3 uid="uid://b0po7y7m7j5av"]
+
+[ext_resource type="Script" path="res://Trap.cs" id="1_qmj6o"]
+[ext_resource type="Texture2D" uid="uid://dpd81c5ivbyve" path="res://Spear.png" id="2_ptipb"]
+[ext_resource type="Texture2D" uid="uid://bxjmclo3nwedc" path="res://TrapBox.png" id="3_uxd5l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7w65d"]
+size = Vector2(63, 4)
+
+[sub_resource type="Animation" id="Animation_bsrxt"]
+resource_name = "GoesLeft"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-80, 0), Vector2(-80, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_hstnb"]
+resource_name = "GoesRight"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(80, 0), Vector2(80, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pitwx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v6ui7"]
+_data = {
+"GoesLeft": SubResource("Animation_bsrxt"),
+"GoesRight": SubResource("Animation_hstnb"),
+"RESET": SubResource("Animation_pitwx")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aysjx"]
+size = Vector2(147.5, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n623c"]
+size = Vector2(80, 80)
+
+[node name="Trap" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_qmj6o")
+
+[node name="Spear" type="Area2D" parent="."]
+z_index = -5
+rotation = 3.14159
+
+[node name="Sprite2D" type="Sprite2D" parent="Spear"]
+texture = ExtResource("2_ptipb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spear"]
+position = Vector2(1.5, 2.84217e-14)
+shape = SubResource("RectangleShape2D_7w65d")
+
+[node name="SpearAnimations" type="AnimationPlayer" parent="Spear"]
+libraries = {
+"": SubResource("AnimationLibrary_v6ui7")
+}
+
+[node name="RightArea2D" type="Area2D" parent="."]
+position = Vector2(120, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArea2D"]
+position = Vector2(-5.5, 0)
+shape = SubResource("RectangleShape2D_aysjx")
+
+[node name="TimerBeforeAct" type="Timer" parent="RightArea2D"]
+wait_time = 0.7
+
+[node name="LeftArea2D" type="Area2D" parent="."]
+position = Vector2(-75, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArea2D"]
+position = Vector2(-39.25, 0)
+shape = SubResource("RectangleShape2D_aysjx")
+
+[node name="TimerBeforeAct" type="Timer" parent="LeftArea2D"]
+wait_time = 0.7
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+disable_mode = 1
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("3_uxd5l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_n623c")
+
+[connection signal="body_entered" from="Spear" to="." method="_on_spear_body_entered"]
+[connection signal="animation_finished" from="Spear/SpearAnimations" to="." method="_on_spear_animation_finished"]
+[connection signal="body_entered" from="RightArea2D" to="." method="_on_right_area_2d_body_entered"]
+[connection signal="timeout" from="RightArea2D/TimerBeforeAct" to="." method="ONRightTimerOut"]
+[connection signal="body_entered" from="LeftArea2D" to="." method="_on_left_area_2d_body_entered"]
+[connection signal="timeout" from="LeftArea2D/TimerBeforeAct" to="." method="OnLeftTimerOut"]

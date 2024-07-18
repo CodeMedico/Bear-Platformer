@@ -1,0 +1,182 @@
+[gd_scene load_steps=14 format=3 uid="uid://csoqvv07q7bxa"]
+
+[ext_resource type="PackedScene" uid="uid://l2bng6sfsbq0" path="res://PlayerBear.tscn" id="1_ujbi2"]
+[ext_resource type="PackedScene" uid="uid://xro0g2ni6081" path="res://ui.tscn" id="2_dxy1o"]
+[ext_resource type="TileSet" uid="uid://c35v2hh0f2ivs" path="res://Terrain40x40.tres" id="4_i6gy3"]
+[ext_resource type="PackedScene" uid="uid://dw0jxhlqb48tj" path="res://sheller.tscn" id="4_wdv75"]
+[ext_resource type="PackedScene" uid="uid://c7ajfcltfm65p" path="res://honey.tscn" id="5_83ru4"]
+[ext_resource type="PackedScene" uid="uid://c8g8fq0gsuj11" path="res://death_transition.tscn" id="6_1vpef"]
+[ext_resource type="Texture2D" uid="uid://b8dn11agg7gto" path="res://TreesTransperent.png" id="8_fmy7w"]
+[ext_resource type="Texture2D" uid="uid://cv3hr10a7grq6" path="res://CircleMask.png" id="8_s06v0"]
+[ext_resource type="Texture2D" uid="uid://dyfcwcf0xnc66" path="res://SkyBox.png" id="9_88rj6"]
+[ext_resource type="Texture2D" uid="uid://cajdrub7joyyq" path="res://BackGround.png" id="10_p57rk"]
+
+[sub_resource type="FontFile" id="FontFile_qoya2"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hqmo6"]
+font = SubResource("FontFile_qoya2")
+font_size = 32
+outline_size = 5
+shadow_size = 21
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekupx"]
+size = Vector2(20587, 194)
+
+[node name="Level4" type="Node2D"]
+
+[node name="PlayerBear" parent="." instance=ExtResource("1_ujbi2")]
+position = Vector2(1153, 649)
+
+[node name="MainCamera" type="Camera2D" parent="PlayerBear"]
+unique_name_in_owner = true
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+limit_right = 2300
+limit_bottom = 855
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="UI" parent="." node_paths=PackedStringArray("characterBody2D") instance=ExtResource("2_dxy1o")]
+characterBody2D = NodePath("../PlayerBear")
+
+[node name="ToolTip" type="CanvasLayer" parent="UI"]
+
+[node name="ColorRect" type="ColorRect" parent="UI/ToolTip"]
+offset_right = 2408.0
+offset_bottom = 1338.0
+color = Color(0, 0, 0, 0.756863)
+
+[node name="Label" type="Label" parent="UI/ToolTip"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -26.0
+offset_right = 104.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Use enemies to complete level"
+label_settings = SubResource("LabelSettings_hqmo6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TileMap2" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(0, -21)
+scale = Vector2(2, 2)
+tile_set = ExtResource("4_i6gy3")
+format = 2
+layer_0/tile_data = PackedInt32Array(589824, 393216, 0, 589825, 327680, 0, 589826, 65536, 0, 589827, 262144, 0, 589828, 327680, 0, 589829, 131072, 0, 589830, 458752, 0, 589831, 65536, 0, 589832, 458752, 0, 589833, 458752, 0, 589834, 131072, 0, 589835, 65536, 0, 589836, 393216, 0, 589837, 393216, 0, 589838, 131072, 0, 589839, 131072, 0, 589840, 262144, 0, 589841, 393216, 0, 589842, 262144, 0, 589843, 262144, 0, 589844, 65536, 0, 589845, 196608, 0, 589846, 131072, 0, 589847, 524288, 0, 589848, 327680, 0, 589849, 524288, 0, 589850, 327680, 0, 589851, 524288, 0, 589852, 65536, 0, 655360, 65536, 4, 655361, 524288, 2, 655362, 327680, 1, 655363, 458752, 8, 655364, 196608, 8, 655365, 65536, 6, 655366, 196608, 1, 655367, 262144, 1, 655368, 65536, 7, 655369, 131072, 8, 655370, 65536, 3, 655371, 65536, 1, 655372, 524288, 5, 655373, 65536, 8, 655374, 458752, 1, 655375, 524288, 4, 655376, 262144, 1, 655377, 458752, 1, 655378, 65536, 7, 655379, 524288, 8, 655380, 65536, 8, 655381, 262144, 8, 655382, 524288, 3, 655383, 524288, 5, 655384, 262144, 1, 655385, 327680, 1, 655386, 131072, 8, 655387, 393216, 8, 655388, 524288, 7, 16, 262144, 0, 17, 524288, 0, 18, 327680, 0, 19, 262144, 0, 20, 65536, 0, 21, 196608, 0, 22, 65536, 0, 23, 65536, 0, -524267, 131072, 0, -524266, 131072, 0, -524265, 262144, 0, -524264, 65536, 0, -524263, 393216, 0, -524262, 196608, 0, -524261, 524288, 0, -917500, 458752, 0, -917499, 524288, 0, -917498, 196608, 0, -917497, 524288, 0, -917496, 262144, 0, -917495, 262144, 0, -917494, 393216, 0, -917493, 458752, 0)
+
+[node name="Honeys" type="Node2D" parent="."]
+
+[node name="Honey" parent="Honeys" instance=ExtResource("5_83ru4")]
+position = Vector2(86, 652)
+
+[node name="Honey7" parent="Honeys" instance=ExtResource("5_83ru4")]
+position = Vector2(88, 488)
+
+[node name="Honey8" parent="Honeys" instance=ExtResource("5_83ru4")]
+position = Vector2(90, 310)
+
+[node name="Honey9" parent="Honeys" instance=ExtResource("5_83ru4")]
+position = Vector2(90, 132)
+
+[node name="Honey2" parent="Honeys" instance=ExtResource("5_83ru4")]
+position = Vector2(2244, 648)
+
+[node name="Honey3" parent="Honeys" instance=ExtResource("5_83ru4")]
+position = Vector2(1872, -81)
+
+[node name="Honey4" parent="Honeys" instance=ExtResource("5_83ru4")]
+position = Vector2(660, -1735)
+
+[node name="Honey5" parent="Honeys" instance=ExtResource("5_83ru4")]
+position = Vector2(1877, -731)
+
+[node name="Honey6" parent="Honeys" instance=ExtResource("5_83ru4")]
+position = Vector2(880, -1207)
+
+[node name="Pit" type="Area2D" parent="."]
+position = Vector2(1543.06, -397.913)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pit"]
+position = Vector2(343, 1914)
+shape = SubResource("RectangleShape2D_ekupx")
+
+[node name="DeathTransition" parent="." instance=ExtResource("6_1vpef")]
+
+[node name="Sheller" parent="." instance=ExtResource("4_wdv75")]
+position = Vector2(1559, 631)
+
+[node name="Sheller2" parent="." instance=ExtResource("4_wdv75")]
+position = Vector2(1432, -92)
+
+[node name="Sheller3" parent="." instance=ExtResource("4_wdv75")]
+position = Vector2(1739, -732)
+
+[node name="Sheller4" parent="." instance=ExtResource("4_wdv75")]
+position = Vector2(513, -1212)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1235, -2124)
+range_layer_min = -110
+shadow_enabled = true
+texture = ExtResource("8_s06v0")
+texture_scale = 15.4
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = -110
+offset = Vector2(0, 70)
+scale = Vector2(0.635, 0.635)
+transform = Transform2D(0.635, 0, 0, 0.635, 0, 70)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(829.921, 738.583)
+motion_scale = Vector2(0.5, 0.15)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
+texture_repeat = 2
+position = Vector2(8724.41, -200)
+scale = Vector2(3.04862, 3.05483)
+texture = ExtResource("8_fmy7w")
+region_enabled = true
+region_rect = Rect2(0.669342, 193.476, 6500.89, 886.871)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -35
+position = Vector2(2343.31, -366.929)
+scale = Vector2(2.4045, 1.48751)
+texture = ExtResource("9_88rj6")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -55
+position = Vector2(2631.46, 1000)
+scale = Vector2(3.08353, 3.08353)
+texture = ExtResource("10_p57rk")
+region_enabled = true
+region_rect = Rect2(-0.129837, 324.643, 1936.57, 429.118)
+
+[connection signal="body_entered" from="Pit" to="PlayerBear" method="_on_pit_body_entered"]

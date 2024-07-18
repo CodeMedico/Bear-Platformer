@@ -1,0 +1,388 @@
+[gd_scene load_steps=29 format=3 uid="uid://l2bng6sfsbq0"]
+
+[ext_resource type="Script" path="res://PlayerBear.cs" id="1_78ncj"]
+[ext_resource type="Texture2D" uid="uid://cu7xfxvewb4vi" path="res://rushBear.png" id="2_doj5o"]
+[ext_resource type="Texture2D" uid="uid://bex4drhglukr" path="res://bear1.png" id="3_k407k"]
+[ext_resource type="Texture2D" uid="uid://d3muh6h8yvnef" path="res://jumpBear.png" id="4_drp5d"]
+[ext_resource type="Texture2D" uid="uid://d4ep14ay6dn20" path="res://bear2.png" id="5_p5b4d"]
+[ext_resource type="Texture2D" uid="uid://cnpngvrsuewtv" path="res://Clock.png" id="6_46cmj"]
+[ext_resource type="Texture2D" uid="uid://mescddebpdrb" path="res://Meat.png" id="7_ndo0a"]
+[ext_resource type="Texture2D" uid="uid://bg6f4c68gtrux" path="res://dust.png" id="8_52xcd"]
+[ext_resource type="Texture2D" uid="uid://cu7r3dpio518d" path="res://BearSkeleton.png" id="9_2s7eb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htd1x"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_doj5o")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k407k")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_drp5d")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_p5b4d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_k407k")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqcyd"]
+size = Vector2(116.941, 183.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6nvl"]
+
+[sub_resource type="Animation" id="Animation_wcuaw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_icrdq"]
+resource_name = "clock"
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qyrk"]
+_data = {
+"RESET": SubResource("Animation_wcuaw"),
+"clock": SubResource("Animation_icrdq")
+}
+
+[sub_resource type="Gradient" id="Gradient_oqo0w"]
+offsets = PackedFloat32Array(0.00357143, 0.714286, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s2qih"]
+gradient = SubResource("Gradient_oqo0w")
+
+[sub_resource type="Curve" id="Curve_bqrpe"]
+min_value = -200.0
+max_value = 1024.0
+_data = [Vector2(0.0128617, 405.558), 0.0, 0.0, 0, 0, Vector2(1, 338.326), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d7s8p"]
+curve = SubResource("Curve_bqrpe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4gd15"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 54.65
+angular_velocity_min = 17.24
+angular_velocity_max = 413.89
+gravity = Vector3(0, 40, 0)
+linear_accel_min = 2.0
+linear_accel_max = 3.0
+linear_accel_curve = SubResource("CurveTexture_d7s8p")
+radial_accel_max = 100.0
+scale_min = 0.2
+scale_max = 0.4
+color_ramp = SubResource("GradientTexture1D_s2qih")
+
+[sub_resource type="Gradient" id="Gradient_3tt4w"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hb8n2"]
+gradient = SubResource("Gradient_3tt4w")
+
+[sub_resource type="Curve" id="Curve_0qpvv"]
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1.63953), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rru40"]
+curve = SubResource("Curve_0qpvv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ceoxo"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 285.7
+initial_velocity_max = 285.7
+angular_velocity_min = -635.03
+angular_velocity_max = 143.11
+gravity = Vector3(0, 20, 0)
+scale_over_velocity_curve = SubResource("CurveTexture_rru40")
+color_ramp = SubResource("GradientTexture1D_hb8n2")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8ufs"]
+atlas = ExtResource("9_2s7eb")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="SkeletonModification2D" id="SkeletonModification2D_qs6yq"]
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_hf0ty"]
+enabled = true
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2D_qs6yq")
+
+[node name="PlayerBear" type="CharacterBody2D" node_paths=PackedStringArray("sprite2D", "clock")]
+position = Vector2(2, 0)
+scale = Vector2(0.4, 0.4)
+collision_mask = 510
+script = ExtResource("1_78ncj")
+sprite2D = NodePath("AnimatedSprite2D")
+clock = NodePath("Clock")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.000244141, 0.00012207)
+scale = Vector2(2.68, 2.68)
+sprite_frames = SubResource("SpriteFrames_htd1x")
+animation = &"run"
+
+[node name="DashTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+
+[node name="DashCooldown" type="Timer" parent="."]
+process_callback = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(3.75, 14.2501)
+scale = Vector2(1.00478, 1)
+shape = SubResource("RectangleShape2D_cqcyd")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+visible = false
+position = Vector2(-42.5, 15)
+rotation = 0.00410394
+scale = Vector2(2, 8.65856)
+shape = SubResource("RectangleShape2D_e6nvl")
+target_position = Vector2(47.9996, -0.0420837)
+collision_mask = 134
+
+[node name="Clock" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -158)
+scale = Vector2(2, 2)
+texture = ExtResource("6_46cmj")
+hframes = 4
+vframes = 4
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Clock"]
+libraries = {
+"": SubResource("AnimationLibrary_1qyrk")
+}
+autoplay = "clock"
+
+[node name="LeftTop" type="RayCast2D" parent="."]
+position = Vector2(-55, -47.5)
+target_position = Vector2(0, -38)
+collision_mask = 110
+
+[node name="MidLeftTop" type="RayCast2D" parent="."]
+position = Vector2(-12.5, -47.5)
+target_position = Vector2(0, -38)
+collision_mask = 110
+
+[node name="MidRightTop" type="RayCast2D" parent="."]
+position = Vector2(25, -47.5)
+target_position = Vector2(0, -38)
+collision_mask = 110
+
+[node name="RightTop" type="RayCast2D" parent="."]
+position = Vector2(62.5, -47.5)
+target_position = Vector2(0, -38)
+collision_mask = 110
+
+[node name="Coyote" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="RightLegs" type="RayCast2D" parent="."]
+position = Vector2(42, 106)
+target_position = Vector2(44, 0)
+collision_mask = 78
+
+[node name="RightLegsMid" type="RayCast2D" parent="."]
+position = Vector2(42, 64)
+target_position = Vector2(44, 0)
+collision_mask = 78
+
+[node name="LeftLegsMid" type="RayCast2D" parent="."]
+position = Vector2(-34, 64)
+target_position = Vector2(-40, 0)
+collision_mask = 78
+
+[node name="LeftLegs" type="RayCast2D" parent="."]
+position = Vector2(-34, 106)
+target_position = Vector2(-40, 0)
+collision_mask = 78
+
+[node name="Bottom" type="RayCast2D" parent="."]
+position = Vector2(4, 62)
+target_position = Vector2(0, 56)
+collision_mask = 166
+
+[node name="CrushRayRight" type="RayCast2D" parent="."]
+target_position = Vector2(82, 0)
+collision_mask = 166
+
+[node name="CrushRayLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-70, 0)
+collision_mask = 166
+
+[node name="DeathAnimation" type="GPUParticles2D" parent="."]
+z_index = 75
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_4gd15")
+texture = ExtResource("7_ndo0a")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.74
+
+[node name="Dust" type="GPUParticles2D" parent="."]
+z_index = 45
+position = Vector2(0, 100)
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_ceoxo")
+texture = ExtResource("8_52xcd")
+lifetime = 0.22
+one_shot = true
+explosiveness = 1.0
+
+[node name="Bear" type="Node2D" parent="."]
+visible = false
+rotation = 0.0306854
+scale = Vector2(2.7, 2.7)
+
+[node name="LeftArm" type="Polygon2D" parent="Bear"]
+z_index = 100
+position = Vector2(-14.3688, -62.4499)
+texture = SubResource("AtlasTexture_v8ufs")
+skeleton = NodePath("../Body/Skeleton2D")
+polygon = PackedVector2Array(20.0769, 69.787, 18.3575, 66.2794, 14.5061, 64.1473, 7.35341, 66.0731, 1.92012, 71.0937, 3.63952, 77.4898, 8.17872, 84.3674, 14.1622, 86.637, 21.59, 85.0552, 23.4469, 79.2092, 21.4524, 72.1941)
+uv = PackedVector2Array(19.5732, 70.2994, 18.9542, 66.3104, 15.1028, 64.1783, 7.95013, 66.104, 2.51683, 71.1247, 4.23623, 77.5208, 8.77543, 84.3984, 14.7589, 86.668, 22.1867, 85.0862, 24.0437, 79.2402, 22.0492, 72.2251)
+bones = ["Body", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Body/LeftLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Body/RightLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Body/LeftArm", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Body/RightArm", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+
+[node name="RightArm" type="Polygon2D" parent="Bear"]
+z_index = -50
+position = Vector2(-59.7391, -32.8203)
+rotation = -0.811283
+texture = ExtResource("9_2s7eb")
+skeleton = NodePath("../Body/Skeleton2D")
+polygon = PackedVector2Array(20.6117, 70.1435, 18.8923, 66.6359, 15.0409, 64.5038, 7.88817, 66.4296, 2.45488, 71.4502, 4.17428, 77.8464, 8.71348, 84.7239, 14.697, 86.9935, 22.1248, 85.4117, 23.9817, 79.5658, 21.9872, 72.5506)
+uv = PackedVector2Array(19.5113, 70.6249, 18.8923, 66.6359, 15.0409, 64.5038, 7.88817, 66.4296, 2.45488, 71.4502, 4.17428, 77.8464, 8.71348, 84.7239, 14.697, 86.9935, 22.1248, 85.4117, 23.9817, 79.5658, 21.9872, 72.5506)
+bones = ["Body", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Body/LeftLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Body/RightLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Body/LeftArm", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Body/RightArm", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)]
+
+[node name="LeftLeg" type="Polygon2D" parent="Bear"]
+z_index = 80
+position = Vector2(-16.2206, -62.4499)
+rotation = 0.0462794
+texture = ExtResource("9_2s7eb")
+skeleton = NodePath("../Body/Skeleton2D")
+polygon = PackedVector2Array(19.644, 88.4936, 7.84372, 88.3424, 4.74236, 92.5027, 4.59107, 102.185, 9.43222, 106.118, 18.2824, 106.118, 23.4262, 102.563, 23.1992, 93.8643)
+uv = PackedVector2Array(18.812, 89.0988, 7.08729, 88.5693, 4.74236, 92.5027, 4.59107, 102.185, 9.05401, 105.589, 18.2824, 106.118, 23.4262, 102.563, 23.1992, 93.8643)
+bones = ["Body", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "Body/LeftLeg", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1), "Body/RightLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "Body/LeftArm", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "Body/RightArm", PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)]
+
+[node name="RightLeg" type="Polygon2D" parent="Bear"]
+z_index = -35
+position = Vector2(-28.7206, -64.4869)
+texture = ExtResource("9_2s7eb")
+skeleton = NodePath("../Body/Skeleton2D")
+polygon = PackedVector2Array(38.3278, 85.7705, 31.2174, 91.7463, 31.5956, 99.4619, 37.0419, 105.589, 46.5729, 105.816, 51.2628, 100.823, 49.5986, 92.8809, 44.0011, 87.2077)
+uv = PackedVector2Array(38.6304, 86.3, 31.2174, 91.7463, 31.5956, 99.4619, 37.0419, 105.589, 46.5729, 105.816, 51.2628, 100.823, 49.5986, 92.8809, 44.0011, 87.2077)
+bones = ["Body", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "Body/LeftLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "Body/RightLeg", PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5), "Body/LeftArm", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "Body/RightArm", PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)]
+
+[node name="Body" type="Polygon2D" parent="Bear"]
+texture_filter = 1
+position = Vector2(-66.2206, -49.487)
+texture = ExtResource("9_2s7eb")
+skeleton = NodePath("Skeleton2D")
+polygon = PackedVector2Array(47.3236, 8.63747, 41.8491, 13.747, 42.0925, 22.9927, 44.2822, 24.3309, 40.0243, 30.6569, 38.4428, 39.1727, 39.0511, 48.1752, 44.0389, 58.1508, 43.5523, 64.8418, 39.1727, 68.1265, 39.2944, 73.7226, 42.7007, 76.8856, 46.2287, 76.8856, 54.3796, 84.3066, 62.2871, 85.6448, 70.438, 85.8881, 74.5742, 84.7932, 74.2092, 81.9951, 82.1168, 77.7372, 86.4963, 70.6813, 86.4963, 60.7056, 85.7664, 57.5426, 89.0183, 53.411, 91.5141, 47.3378, 91.2646, 40.599, 94.8419, 37.7704, 94.5091, 33.777, 91.3477, 30.5324, 89.3511, 30.6988, 86.4393, 23.2113, 78.4526, 16.8885, 71.6306, 9.3178, 69.3012, 7.8203)
+uv = PackedVector2Array(47.217, 8.40324, 41.711, 13.5422, 41.9557, 22.8412, 44.1581, 24.1871, 39.8757, 30.5495, 38.2851, 39.1144, 38.8968, 48.1687, 43.9134, 58.2018, 43.424, 64.9313, 39.0192, 68.2349, 39.1415, 73.8633, 42.5675, 77.0445, 46.1158, 77.0445, 54.3136, 84.5082, 62.2667, 85.8541, 70.4645, 86.0988, 74.6246, 84.9976, 74.2575, 82.1834, 82.2106, 77.901, 86.6154, 70.8044, 86.6154, 60.7713, 85.8812, 57.59, 89.1518, 53.4346, 91.662, 47.3265, 91.411, 40.5489, 95.009, 37.704, 94.6743, 33.6876, 91.4947, 30.4243, 89.4865, 30.5917, 86.5579, 23.061, 78.5253, 16.7018, 71.664, 9.0875, 69.3211, 7.58138)
+bones = ["Body", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Body/LeftLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Body/RightLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Body/LeftArm", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Body/RightArm", PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)]
+
+[node name="Skeleton2D" type="Skeleton2D" parent="Bear/Body"]
+position = Vector2(2.33168, 3.19067)
+modification_stack = SubResource("SkeletonModificationStack2D_hf0ty")
+
+[node name="Body" type="Bone2D" parent="Bear/Body/Skeleton2D"]
+position = Vector2(68.5185, 53.7037)
+rest = Transform2D(1, 0, 0, 1, 66.6667, 54.6296)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="LeftLeg" type="Bone2D" parent="Bear/Body/Skeleton2D/Body"]
+position = Vector2(-8.33337, 22.2222)
+rest = Transform2D(2.22127e-06, 1, -1, 2.22127e-06, -4.62963, 22.2222)
+auto_calculate_length_and_angle = false
+length = 10.41
+bone_angle = 0.0
+
+[node name="RightLeg" type="Bone2D" parent="Bear/Body/Skeleton2D/Body"]
+position = Vector2(4.62963, 20.3704)
+rest = Transform2D(0.728025, 0.685551, -0.685551, 0.728025, 8.33333, 23.1481)
+auto_calculate_length_and_angle = false
+length = 10.41
+bone_angle = 0.0
+
+[node name="LeftArm" type="Bone2D" parent="Bear/Body/Skeleton2D/Body"]
+position = Vector2(2.77778, 5.55555)
+scale = Vector2(0.999905, 0.999905)
+rest = Transform2D(0.375231, 0.926931, -0.926931, 0.375231, -2.77778, 3.7037)
+auto_calculate_length_and_angle = false
+length = 10.41
+bone_angle = 0.0
+
+[node name="RightArm" type="Bone2D" parent="Bear/Body/Skeleton2D/Body"]
+position = Vector2(2.33165, 5.96847)
+rotation = 0.511498
+rest = Transform2D(0.872012, 0.489484, -0.489484, 0.872012, 0.925926, 2.77778)
+auto_calculate_length_and_angle = false
+length = 10.41
+bone_angle = 0.0
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="Coyote" to="." method="_on_coyote_timeout"]

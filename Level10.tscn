@@ -1,0 +1,153 @@
+[gd_scene load_steps=17 format=3 uid="uid://ydikkxdagkcm"]
+
+[ext_resource type="PackedScene" uid="uid://l2bng6sfsbq0" path="res://PlayerBear.tscn" id="2_wboxp"]
+[ext_resource type="PackedScene" uid="uid://ct1cjnb2cmvij" path="res://portal.tscn" id="3_id0kw"]
+[ext_resource type="TileSet" uid="uid://c35v2hh0f2ivs" path="res://Terrain40x40.tres" id="3_th7qx"]
+[ext_resource type="Script" path="res://SawFly.cs" id="4_46248"]
+[ext_resource type="PackedScene" uid="uid://diwav227xa73w" path="res://saw.tscn" id="4_b1e1e"]
+[ext_resource type="PackedScene" uid="uid://c8g8fq0gsuj11" path="res://death_transition.tscn" id="6_xhuh6"]
+[ext_resource type="PackedScene" uid="uid://66dsm6gn86f0" path="res://sceneTransition.tscn" id="7_qiiwm"]
+[ext_resource type="PackedScene" uid="uid://xro0g2ni6081" path="res://ui.tscn" id="8_h24hj"]
+[ext_resource type="PackedScene" uid="uid://c7ajfcltfm65p" path="res://honey.tscn" id="9_v1wxq"]
+[ext_resource type="Texture2D" uid="uid://v54nwd1h6yw3" path="res://Trees2.jpg" id="12_h4cfo"]
+[ext_resource type="Texture2D" uid="uid://dhm08kmfilk16" path="res://RainParticle.png" id="13_0jeio"]
+
+[sub_resource type="Curve" id="Curve_x058y"]
+_data = [Vector2(0.00321543, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_ce7ek"]
+min_value = 1.0
+max_value = 3.0
+_data = [Vector2(0.00643087, 1.05263), 0.0, 0.0, 0, 0, Vector2(0.993569, 2.97895), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_146mr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_uxbyc"]
+curve_x = SubResource("Curve_x058y")
+curve_y = SubResource("Curve_ce7ek")
+curve_z = SubResource("Curve_146mr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_38rej"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2000, 0, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 980, 0)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveXYZTexture_uxbyc")
+
+[node name="Level10" type="Node2D"]
+position = Vector2(8, -53)
+
+[node name="TileMap4" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(-2, -2)
+scale = Vector2(2, 2)
+tile_set = ExtResource("3_th7qx")
+format = 2
+layer_0/tile_data = PackedInt32Array(1310720, 196608, 6, 1310721, 393216, 0, 1310722, 262144, 0, 1310723, 458752, 0, 1310724, 131072, 0, 1310725, 327680, 0, 1310726, 327680, 0, 1310727, 327680, 0, 1310728, 262144, 0, 1310729, 131072, 0, 1310730, 262144, 0, 1310731, 65536, 0, 1310732, 196608, 0, 1245196, 720896, 1, 1179660, 720896, 1, 1114124, 720896, 1, 1048588, 720896, 1, 983052, 720896, 1, 917516, 720896, 1, 851980, 786432, 1, 786444, 720896, 1, 720908, 720896, 1, 655372, 720896, 1, 589836, 720896, 1, 524300, 720896, 1, 458764, 786432, 1, 393228, 720896, 0, 327692, 786432, 65537, 262156, 720896, 1, 196620, 720896, 1, 65536, 458752, 9, 0, 262144, 8, 1, 65536, 6, 2, 393216, 8, 3, 458752, 1, 4, 524288, 7, 5, 65536, 4, 6, 393216, 1, 7, 65536, 5, 8, 524288, 1, 9, 65536, 4, 10, 393216, 8, 11, 262144, 1, 12, 524288, 4, 65548, 65536, 9, 131084, 720896, 1, 13, 327680, 8, 14, 524288, 5, 15, 196608, 8, 16, 393216, 1, 17, 65536, 7, 18, 524288, 8, 19, 524288, 2, 20, 196608, 1, 21, 65536, 6, 22, 131072, 8, 23, 196608, 8, 24, 524288, 8, 65560, 131072, 9, 131096, 720896, 1, 196632, 720896, 0, 262168, 720896, 1, 327704, 720896, 1, 393240, 720896, 1, 458776, 720896, 1, 524312, 720896, 1, 589848, 720896, 1, 655384, 720896, 1, 720920, 720896, 1, 786456, 720896, 1, 851992, 786432, 65537, 917528, 720896, 1, 983064, 720896, 1, 1048600, 720896, 1, 1114136, 720896, 1, 1179672, 720896, 1, 1245208, 720896, 1, 1310744, 131072, 0, 1310733, 458752, 0, 1310734, 131072, 0, 1310735, 262144, 0, 1310736, 131072, 0, 1310737, 458752, 0, 1310738, 262144, 0, 1310739, 65536, 0, 1310740, 196608, 0, 1310741, 524288, 0, 1310742, 196608, 0, 1310743, 327680, 0, 65537, 131072, 9, 65538, 196608, 9, 65539, 458752, 9, 65540, 458752, 9, 65541, 196608, 9, 65542, 131072, 9, 65543, 393216, 9, 65544, 524288, 9, 65545, 458752, 9, 65546, 131072, 9, 65547, 393216, 9, 65549, 131072, 9, 65550, 458752, 9, 65551, 458752, 9, 65552, 458752, 9, 65553, 262144, 9, 65554, 524288, 9, 65555, 458752, 9, 65556, 262144, 9, 65557, 327680, 9, 65558, 524288, 9, 65559, 262144, 9, 851984, 131072, 0, 851985, 524288, 0, 851986, 65536, 0, 851987, 524288, 0, 851988, 393216, 0, 1310745, 393216, 0, 1310746, 524288, 0, 1310747, 458752, 0, 1310748, 327680, 0, 1310749, 196608, 0, 1310750, 65536, 0, 1310751, 327680, 0, 1310752, 65536, 0, 1310753, 327680, 0, 1310754, 262144, 0, 1310755, 524288, 0, 1245219, 720896, 1, 1179683, 786432, 65537, 1114147, 720896, 1, 1048611, 720896, 1, 983075, 786432, 1, 917539, 720896, 1, 852003, 720896, 1, 786467, 720896, 1, 720931, 720896, 0, 655395, 786432, 1, 589859, 720896, 0, 524323, 720896, 1, 458787, 720896, 1, 393251, 786432, 65537, 327715, 720896, 1, 262179, 720896, 1, 196643, 720896, 1, 131107, 720896, 1, 65571, 196608, 9, 35, 524288, 5, 34, 458752, 1, 33, 196608, 8, 32, 65536, 8, 31, 393216, 1, 30, 65536, 6, 29, 65536, 2, 28, 262144, 1, 27, 131072, 1, 26, 524288, 5, 25, 458752, 8, 65561, 131072, 9, 65562, 262144, 9, 65563, 65536, 9, 65564, 393216, 9, 65565, 131072, 9, 65566, 65536, 9, 65567, 327680, 9, 65568, 262144, 9, 65569, 524288, 9, 65570, 262144, 9, 1245184, 720896, 1, 1179648, 720896, 1, 131072, 720896, 1, 196608, 720896, 0, 262144, 720896, 1, 1114112, 786432, 65537, 1048576, 720896, 1, 1114113, 720896, 0, 1114114, 786432, 1, 1114115, 720896, 1, 983040, 720896, 1, 917504, 720896, 1, 851968, 720896, 1, 786432, 720896, 1, 720896, 720896, 1, 655360, 720896, 1, 589824, 720896, 1, 524288, 720896, 1, 458752, 720896, 1, 393216, 720896, 1, 327680, 720896, 1)
+
+[node name="PlayerBear" parent="." instance=ExtResource("2_wboxp")]
+position = Vector2(145, 1543)
+
+[node name="MainCamera" type="Camera2D" parent="PlayerBear"]
+unique_name_in_owner = true
+zoom = Vector2(0.4, 0.4)
+limit_left = 0
+limit_top = 0
+limit_right = 2880
+limit_bottom = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="Portal" parent="." node_paths=PackedStringArray("PairPortal") instance=ExtResource("3_id0kw")]
+position = Vector2(858, 1490)
+PairPortal = NodePath("../Portal2")
+
+[node name="Portal2" parent="." node_paths=PackedStringArray("PairPortal") instance=ExtResource("3_id0kw")]
+position = Vector2(1136, 1487)
+PairPortal = NodePath("../Portal")
+
+[node name="SawFly" type="Node2D" parent="."]
+position = Vector2(1858, 1511)
+script = ExtResource("4_46248")
+
+[node name="Saw" parent="SawFly" instance=ExtResource("4_b1e1e")]
+position = Vector2(-0.00012207, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="SawFly"]
+target_position = Vector2(-49, 0)
+collision_mask = 162
+
+[node name="Portal3" parent="." node_paths=PackedStringArray("PairPortal") instance=ExtResource("3_id0kw")]
+position = Vector2(1281, 820)
+PairPortal = NodePath("../Portal4")
+
+[node name="Portal4" parent="." node_paths=PackedStringArray("PairPortal") instance=ExtResource("3_id0kw")]
+position = Vector2(507, 597)
+PairPortal = NodePath("../Portal3")
+
+[node name="Portal5" parent="." node_paths=PackedStringArray("PairPortal") instance=ExtResource("3_id0kw")]
+position = Vector2(175, 276)
+PairPortal = NodePath("../Portal6")
+
+[node name="Portal6" parent="." node_paths=PackedStringArray("PairPortal") instance=ExtResource("3_id0kw")]
+position = Vector2(2082, 1492)
+PairPortal = NodePath("../Portal5")
+
+[node name="DeathTransition" parent="." instance=ExtResource("6_xhuh6")]
+
+[node name="SceneTransition" parent="." instance=ExtResource("7_qiiwm")]
+
+[node name="UI" parent="." node_paths=PackedStringArray("characterBody2D") instance=ExtResource("8_h24hj")]
+characterBody2D = NodePath("../PlayerBear")
+
+[node name="Honey" parent="." instance=ExtResource("9_v1wxq")]
+position = Vector2(2728, 235)
+
+[node name="Honey2" parent="." instance=ExtResource("9_v1wxq")]
+position = Vector2(2082, 235)
+
+[node name="Honey3" parent="." instance=ExtResource("9_v1wxq")]
+position = Vector2(1858, 235)
+
+[node name="Honey4" parent="." instance=ExtResource("9_v1wxq")]
+position = Vector2(1130, 235)
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = -110
+offset = Vector2(0, 70)
+scale = Vector2(0.635, 0.635)
+transform = Transform2D(0.635, 0, 0, 0.635, 0, 70)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(829.921, 738.583)
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
+texture_repeat = 2
+position = Vector2(1446.56, 391.4)
+scale = Vector2(4.41941, 4.4284)
+texture = ExtResource("12_h4cfo")
+region_enabled = true
+region_rect = Rect2(0.267174, 0.120777, 2724.41, 575.053)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -10
+position = Vector2(1469, -6)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_38rej")
+texture = ExtResource("13_0jeio")
+lifetime = 2.0
+speed_scale = 1.5
+
+[connection signal="tree_exited" from="SawFly" to="SawFly" method="_on_tree_exited"]

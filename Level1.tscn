@@ -1,0 +1,146 @@
+[gd_scene load_steps=13 format=3 uid="uid://dmqa5m5kto7cu"]
+
+[ext_resource type="PackedScene" uid="uid://l2bng6sfsbq0" path="res://PlayerBear.tscn" id="1_55ej4"]
+[ext_resource type="TileSet" uid="uid://c35v2hh0f2ivs" path="res://Terrain40x40.tres" id="2_tmx0a"]
+[ext_resource type="PackedScene" uid="uid://c7ajfcltfm65p" path="res://honey.tscn" id="3_unha0"]
+[ext_resource type="Texture2D" uid="uid://b8dn11agg7gto" path="res://TreesTransperent.png" id="7_0sf53"]
+[ext_resource type="PackedScene" uid="uid://xro0g2ni6081" path="res://ui.tscn" id="7_fsx3a"]
+[ext_resource type="Texture2D" uid="uid://cv3hr10a7grq6" path="res://CircleMask.png" id="7_ftqf5"]
+[ext_resource type="Texture2D" uid="uid://dyfcwcf0xnc66" path="res://SkyBox.png" id="8_w5jgm"]
+[ext_resource type="Texture2D" uid="uid://cajdrub7joyyq" path="res://BackGround.png" id="9_ertcg"]
+[ext_resource type="PackedScene" uid="uid://c8g8fq0gsuj11" path="res://death_transition.tscn" id="9_lo4xo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dsmw"]
+size = Vector2(20587, 194)
+
+[sub_resource type="FontFile" id="FontFile_wc58g"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ulfco"]
+font = SubResource("FontFile_wc58g")
+font_size = 32
+outline_size = 5
+shadow_size = 21
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Level1" type="Node2D"]
+
+[node name="PlayerBear" parent="." instance=ExtResource("1_55ej4")]
+position = Vector2(289.8, 1078.8)
+
+[node name="TileMap2" type="TileMap" parent="."]
+position = Vector2(80.8, 644.8)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_tmx0a")
+format = 2
+layer_0/tile_data = PackedInt32Array(393218, 327680, 0, 393219, 196608, 0, 393220, 458752, 0, 393221, 65536, 0, 393222, 458752, 0, 393223, 65536, 0, 393224, 196608, 0, 393225, 65536, 0, 393226, 458752, 0, 393227, 196608, 0, 393228, 458752, 0, 393217, 196608, 6, 393229, 524288, 0, 65537, 589824, 6, 131073, 589824, 3, 196609, 589824, 1, 262145, 589824, 6, 327681, 589824, 7, 1, 589824, 0, 0, 65536, 0, 65535, 65536, 0, 131071, 458752, 1, 196607, 65536, 5, 131072, 65536, 7, 196608, 65536, 6, 262144, 393216, 1, 327680, 524288, 7, 393216, 524288, 1, 458752, 524288, 4, 524287, 524288, 7, 458751, 458752, 1, 393215, 65536, 5, 327679, 393216, 1, 262143, 458752, 1, 65536, 262144, 1, 458753, 65536, 5, 458754, 65536, 5, 458755, 393216, 1, 458756, 458752, 1, 458757, 524288, 3, 458758, 524288, 3, 458759, 65536, 5, 458760, 65536, 7, 458761, 196608, 1, 458762, 65536, 1, 458763, 393216, 1, 458764, 458752, 1, 458765, 65536, 5, 458766, 65536, 1, 393230, 458752, 0, 393231, 262144, 0, 393232, 393216, 0, 393233, 131072, 0, 393234, 262144, 0, 393235, 458752, 0, 393236, 393216, 0, 393237, 65536, 0, 393238, 393216, 0, 393239, 65536, 0, 393240, 458752, 0, 393241, 524288, 0, 393242, 65536, 0, 393243, 327680, 0, 393244, 327680, 0, 458767, 458752, 8, 458768, 65536, 3, 458769, 65536, 2, 458770, 65536, 8, 458771, 131072, 8, 458772, 196608, 1, 458773, 458752, 1, 458774, 393216, 8, 458775, 393216, 1, 458776, 131072, 1, 458777, 65536, 4, 458778, 65536, 2, 458779, 65536, 3, 458780, 65536, 3)
+
+[node name="MainCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(660.8, 964.8)
+scale = Vector2(0.5, 0.5)
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+limit_top = 0
+limit_bottom = 0
+
+[node name="Honey" parent="." instance=ExtResource("3_unha0")]
+position = Vector2(2186, 1082)
+
+[node name="Pit" type="Area2D" parent="."]
+position = Vector2(741.8, -519.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pit"]
+position = Vector2(343, 1914)
+shape = SubResource("RectangleShape2D_3dsmw")
+
+[node name="DeathTransition" parent="." instance=ExtResource("9_lo4xo")]
+layer = 2
+
+[node name="UI" parent="." node_paths=PackedStringArray("characterBody2D") instance=ExtResource("7_fsx3a")]
+characterBody2D = NodePath("../PlayerBear")
+
+[node name="ToolTip" type="CanvasLayer" parent="UI"]
+
+[node name="ColorRect" type="ColorRect" parent="UI/ToolTip"]
+offset_left = -15.0
+offset_top = -8.0
+offset_right = 2393.0
+offset_bottom = 1330.0
+color = Color(0, 0, 0, 0.756863)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="UI/ToolTip"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -26.0
+offset_right = 104.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Collect honey"
+label_settings = SubResource("LabelSettings_ulfco")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1508.8, 436.8)
+range_layer_min = -101
+shadow_enabled = true
+texture = ExtResource("7_ftqf5")
+texture_scale = 7.05
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = -110
+offset = Vector2(0, 70)
+scale = Vector2(0.635, 0.635)
+transform = Transform2D(0.635, 0, 0, 0.635, 0, 70)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(829.921, 738.583)
+motion_scale = Vector2(0.5, 0.15)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
+texture_repeat = 2
+position = Vector2(8724.41, -200)
+scale = Vector2(3.04862, 3.05483)
+texture = ExtResource("7_0sf53")
+region_enabled = true
+region_rect = Rect2(0.669342, 193.476, 6500.89, 886.871)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -35
+position = Vector2(2343.31, -366.929)
+scale = Vector2(2.4045, 1.48751)
+texture = ExtResource("8_w5jgm")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = -55
+position = Vector2(2631.46, 1000)
+scale = Vector2(3.08353, 3.08353)
+texture = ExtResource("9_ertcg")
+region_enabled = true
+region_rect = Rect2(-0.129837, 324.643, 1936.57, 429.118)
+
+[connection signal="body_entered" from="Pit" to="PlayerBear" method="_on_pit_body_entered"]

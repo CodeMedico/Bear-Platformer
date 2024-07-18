@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7ajfcltfm65p"]
+
+[ext_resource type="Script" path="res://Honey.cs" id="1_qgltj"]
+[ext_resource type="Texture2D" uid="uid://dodxok1ccc4te" path="res://Honey2.png" id="2_lhquw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fqaq0"]
+radius = 28.0
+height = 72.0
+
+[sub_resource type="Animation" id="Animation_ffv5f"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, 0), Vector2(-2, -12), Vector2(-2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ra2c"]
+_data = {
+"idle": SubResource("Animation_ffv5f")
+}
+
+[node name="Honey" type="Area2D"]
+script = ExtResource("1_qgltj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fqaq0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -6)
+scale = Vector2(1.4, 1.46)
+texture = ExtResource("2_lhquw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_8ra2c")
+}
+autoplay = "idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
